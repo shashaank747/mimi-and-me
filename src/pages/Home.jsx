@@ -57,16 +57,18 @@ export default function Home() {
         <div className="home-interactive-stage">
           {/* ── LEFT HERO: Mimi + Adventure CTA ── */}
           <div className="home-left-hero">
-            {/* Speech Bubble */}
-            <div className="mimi-speech-bubble animate-fadeInDown">
-              <span className="speech-text">Ready for an adventure?</span>
-              <span className="speech-heart">💖</span>
-              <div className="speech-tail" />
-            </div>
-
-            {/* Big Mimi Character */}
-            <div className="mimi-hero-sprite animate-float" onClick={() => AudioManager.playLetterSound('A')}>
-              <Mimi expression="excited" size={240} animated />
+            {/* 3D Mimi Character with integrated 'Ready for adventure?' speech bubble & podium */}
+            <div
+              className="mimi-hero-sprite animate-float"
+              onClick={() => AudioManager.playLetterSound('A')}
+              title="Click Mimi!"
+            >
+              <img
+                src="/images/Mimi Bunny’s Adventure Begins.png"
+                alt="Mimi Bunny - Ready for Adventure"
+                className="mimi-adventure-3d-img"
+                draggable={false}
+              />
             </div>
 
             {/* Wooden Board CTA */}
