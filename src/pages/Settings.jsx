@@ -13,10 +13,20 @@ import './Settings.css';
 
 export default function Settings() {
   const navigate = useNavigate();
-  const profile = ProfileManager.getActive();
+  const [profile, setProfile] = useState(ProfileManager.getActive());
   const [settings, setSettings] = useState(getSettings());
   const [showParentZone, setShowParentZone] = useState(false);
-  if (!profile) { navigate('/profile-select'); return null; }
+
+  useEffect(() => {
+    const current = ProfileManager.getActive();
+    if (!current) {
+      navigate('/profile-select');
+    } else {
+      setProfile(current);
+    }
+  }, [navigate]);
+
+  if (!profile) return null;
 
   const handleToggle = (key) => {
     const next = { ...settings, [key]: !settings[key] };
@@ -29,7 +39,19 @@ export default function Settings() {
   };
 
   if (showParentZone) {
-    return <ParentZone profile={profile} onBack={() => setShowParentZone(false)} />;
+    return (
+      <ParentZone
+        activeProfile={profile}
+        onProfileChanged={(newProfile) => {
+          if (!newProfile) {
+            navigate('/profile-select');
+          } else {
+            setProfile(newProfile);
+          }
+        }}
+        onBack={() => setShowParentZone(false)}
+      />
+    );
   }
 
   return (
@@ -168,16 +190,35 @@ function HoldButton({ onComplete }) {
 }
 
 // ── Parent Zone Dashboard ──
-function ParentZone({ profile, onBack }) {
-  const stats = ProgressManager.getParentStats(profile);
+function ParentZone({ activeProfile, onProfileChanged, onBack }) {
+  const [profiles, setProfiles] = useState(ProfileManager.getAll());
+  const [targetToDelete, setTargetToDelete] = useState(null);
+  const stats = ProgressManager.getParentStats(activeProfile);
+
+  const handleDeleteConfirmed = (profileId) => {
+    ProfileManager.delete(profileId);
+    AudioManager.playWrong(); // audio cue
+    const remaining = ProfileManager.getAll();
+    setProfiles(remaining);
+    setTargetToDelete(null);
+
+    if (remaining.length === 0) {
+      onProfileChanged(null);
+    } else if (activeProfile.id === profileId) {
+      // Switched to first remaining profile
+      ProfileManager.setActive(remaining[0].id);
+      onProfileChanged(remaining[0]);
+    }
+  };
 
   return (
     <div className="page settings-page">
       <Header profile={null} showBack title="Parent Zone" />
       <button className="back-link" onClick={onBack}>◀ Back to Settings</button>
 
+      {/* Progress overview */}
       <div className="parent-zone card animate-fadeInUp">
-        <div className="parent-zone-title">📊 {profile.name}'s Progress</div>
+        <div className="parent-zone-title">📊 {activeProfile.name}'s Learning Progress</div>
 
         <div className="parent-stats-grid">
           <StatBox label="🔤 Letters" value={`${stats.lettersLearned} / 26`} />
@@ -193,8 +234,121 @@ function ParentZone({ profile, onBack }) {
         </div>
 
         <div className="parent-note">
-          Progress is saved on this device only. Cloud sync is coming in a future version.
+          Progress is saved on this device only.
         </div>
+      </div>
+
+      {/* ── Parent Controls: Manage & Delete Profiles ── */}
+      <div className="parent-zone card parent-danger-card animate-fadeInUp mt-4">
+        <div className="parent-section-header">
+          <span className="parent-section-icon">🛡️</span>
+          <div>
+            <h3 className="parent-section-heading">Parent Control: Manage Profiles</h3>
+            <p className="parent-section-sub">Delete child profiles or reset learning data (Parent verification required)</p>
+          </div>
+        </div>
+
+        <div className="parent-profiles-list">
+          {profiles.map((p) => (
+            <div key={p.id} className="parent-profile-row">
+              <div className="parent-profile-info">
+                <span className="parent-profile-avatar">{p.avatarEmoji || '🐰'}</span>
+                <div>
+                  <div className="parent-profile-name">
+                    {p.name} {p.id === activeProfile.id && <span className="active-badge">Active</span>}
+                  </div>
+                  <div className="parent-profile-meta">
+                    Age {p.age || '—'} • ⭐ {p.stars || 0} stars {p.parentName ? `• Parent: ${p.parentName}` : ''}
+                  </div>
+                </div>
+              </div>
+
+              <button
+                className="delete-profile-btn"
+                onClick={() => {
+                  AudioManager.playClick();
+                  setTargetToDelete(p);
+                }}
+                aria-label={`Delete profile for ${p.name}`}
+              >
+                🗑️ Delete Profile
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Parent Verification Modal for Deletion */}
+      {targetToDelete && (
+        <ParentDeleteModal
+          profile={targetToDelete}
+          onConfirm={() => handleDeleteConfirmed(targetToDelete.id)}
+          onCancel={() => setTargetToDelete(null)}
+        />
+      )}
+    </div>
+  );
+}
+
+// ── Parent Verification & Math Security Modal ──
+function ParentDeleteModal({ profile, onConfirm, onCancel }) {
+  // Generate random math challenge for adult verification
+  const [num1] = useState(() => Math.floor(Math.random() * 6) + 6); // 6 to 11
+  const [num2] = useState(() => Math.floor(Math.random() * 5) + 4); // 4 to 8
+  const correctAnswer = num1 * num2;
+  const [userAnswer, setUserAnswer] = useState('');
+  const [error, setError] = useState('');
+
+  const handleVerifyAndDelete = (e) => {
+    e.preventDefault();
+    if (parseInt(userAnswer.trim(), 10) !== correctAnswer) {
+      setError(`Incorrect answer. Please solve ${num1} × ${num2} to prove you are a parent.`);
+      AudioManager.playWrong();
+      return;
+    }
+    onConfirm();
+  };
+
+  return (
+    <div className="parent-modal-overlay">
+      <div className="parent-modal-card animate-scaleUp">
+        <div className="parent-modal-badge">⚠️ Parent Verification</div>
+        <h2 className="parent-modal-title">Delete "{profile.name}"?</h2>
+        <p className="parent-modal-warning">
+          This will <strong>permanently erase</strong> all stars, completed levels, achievements, and statistics for <strong>{profile.name}</strong>. This action cannot be undone.
+        </p>
+
+        <form onSubmit={handleVerifyAndDelete} className="parent-verify-form">
+          <label className="parent-math-prompt">
+            <span>🔒 Adult Verification: What is <strong>{num1} × {num2}</strong>?</span>
+            <input
+              type="number"
+              placeholder="Answer"
+              value={userAnswer}
+              onChange={(e) => {
+                setUserAnswer(e.target.value);
+                if (error) setError('');
+              }}
+              autoFocus
+              className="parent-math-input"
+            />
+          </label>
+
+          {error && <div className="parent-verify-error">{error}</div>}
+
+          <div className="parent-modal-actions">
+            <button type="button" className="parent-cancel-btn" onClick={onCancel}>
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="parent-confirm-delete-btn"
+              disabled={!userAnswer.trim()}
+            >
+              Confirm &amp; Delete
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
