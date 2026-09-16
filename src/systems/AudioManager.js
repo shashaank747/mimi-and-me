@@ -47,6 +47,65 @@ function playArpeggio(notes, interval = 0.1) {
   });
 }
 
+// ── Voice & Speech (Female / Girl Voice with Web Speech API) ──
+let preferredFemaleVoice = null;
+
+function loadFemaleVoice() {
+  if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
+  const voices = window.speechSynthesis.getVoices();
+  if (!voices || voices.length === 0) return;
+
+  // List of high-quality female/girl voice keywords in priority order
+  const femaleKeywords = [
+    'zira',
+    'jenny',
+    'aria',
+    'susan',
+    'samantha',
+    'victoria',
+    'karen',
+    'fiona',
+    'moira',
+    'tessa',
+    'catherine',
+    'eva',
+    'female',
+    'woman',
+    'girl',
+    'google uk english female',
+    'google us english',
+  ];
+
+  // 1. Search for known female English voice
+  for (const kw of femaleKeywords) {
+    const match = voices.find(
+      v => (v.name && v.name.toLowerCase().includes(kw)) ||
+           (v.voiceURI && v.voiceURI.toLowerCase().includes(kw))
+    );
+    if (match) {
+      preferredFemaleVoice = match;
+      return;
+    }
+  }
+
+  // 2. Filter for any English voice
+  const englishVoices = voices.filter(v => v.lang && v.lang.toLowerCase().startsWith('en'));
+  // Avoid known male names if possible (David, Mark, George, Richard)
+  const nonMaleEnglish = englishVoices.find(
+    v => !/(david|mark|george|richard|james|male)/i.test(v.name)
+  );
+
+  preferredFemaleVoice = nonMaleEnglish || englishVoices[0] || voices[0];
+}
+
+// Pre-load voices on startup & listen for async browser voice list changes
+if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+  loadFemaleVoice();
+  window.speechSynthesis.onvoiceschanged = () => {
+    loadFemaleVoice();
+  };
+}
+
 export const AudioManager = {
   setVoice(enabled) { voiceEnabled = enabled; },
   setMusic(enabled) { musicEnabled = enabled; },
@@ -86,14 +145,13 @@ export const AudioManager = {
   },
 
   // ── Voice (lazy-loaded audio files) ──
-  // Files loaded from /sounds/ directory when world is entered
   async playVoice(path) {
     if (!voiceEnabled) return;
     const fullPath = path.startsWith('/') ? path : `/sounds/${path}`;
     try {
       if (!AUDIO_CACHE[fullPath]) {
         const response = await fetch(fullPath);
-        if (!response.ok) return; // file not found — silent fallback
+        if (!response.ok) return;
         const buffer = await response.arrayBuffer();
         const ctx = getAudioContext();
         AUDIO_CACHE[fullPath] = await ctx.decodeAudioData(buffer);
@@ -104,19 +162,31 @@ export const AudioManager = {
       source.connect(ctx.destination);
       source.start(0);
     } catch {
-      // Silent fallback — audio is enhancement, not required
+      // Silent fallback
     }
   },
 
-  // ── Voice & Speech (Web Speech API + lazy files) ──
+  // ── Cheerful Girl Voice Speech Synthesis ──
   speak(text) {
     if (!voiceEnabled || !text) return;
     try {
       if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel(); // cancel any prior speech
+        window.speechSynthesis.cancel(); // cancel any ongoing speech
+
         const utterance = new SpeechSynthesisUtterance(text);
-        utterance.rate = 0.9;  // child-friendly pacing
-        utterance.pitch = 1.2; // warm, friendly tone
+
+        if (!preferredFemaleVoice) {
+          loadFemaleVoice();
+        }
+        if (preferredFemaleVoice) {
+          utterance.voice = preferredFemaleVoice;
+        }
+
+        // Tuned for a friendly, cheerful, clear youthful girl / female voice
+        utterance.rate = 0.95;   // child-friendly natural pacing
+        utterance.pitch = 1.35;  // bright, sweet, high girl pitch
+        utterance.volume = 1.0;
+
         window.speechSynthesis.speak(utterance);
       }
     } catch {
@@ -128,13 +198,18 @@ export const AudioManager = {
     if (word) {
       this.speak(`${letter}... is for ${word}!`);
     } else {
-      this.speak(`Letter ${letter}`);
+      this.speak(`Letter ${letter}!`);
     }
+  },
+
+  playLetterSound(letter = 'A') {
+    this.speak(`Hi explorer! Let's play and learn!`);
   },
 
   // ── Resume after user interaction ──
   resumeContext() {
     try { getAudioContext(); } catch { /* ignore */ }
+    try { loadFemaleVoice(); } catch { /* ignore */ }
   },
 };
 
