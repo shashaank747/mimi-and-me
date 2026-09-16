@@ -266,7 +266,12 @@ function SelectProfileModal({ profiles, onSelect, onAddNew }) {
     <div className="profile-select-modal-overlay">
       <div className="profile-select-card card animate-scaleUp">
         <div className="profile-select-header">
-          <div className="modal-bunny-icon">🐰</div>
+          <img
+            src="/images/icon.png"
+            alt="Mimi & Me"
+            style={{ height: '75px', objectFit: 'contain', margin: '0 auto 0.4rem', display: 'block' }}
+            draggable={false}
+          />
           <h2>Choose Who is Playing</h2>
           <p>Select your explorer or create a new profile!</p>
         </div>

@@ -24,21 +24,14 @@ export default function Header({ profile, showBack = false, title = null, isHome
           ◀
         </button>
       ) : isHome ? (
-        /* Top Left 3D Logo */
-        <div className="header-logo-group" onClick={() => navigate('/home')}>
-          <div className="header-3d-logo">
-            <span className="logo-letter logo-m1">M</span>
-            <span className="logo-letter logo-i1">I</span>
-            <span className="logo-letter logo-m2">M</span>
-            <span className="logo-letter logo-i2">I</span>
-            <span className="logo-amp">&amp;</span>
-            <span className="logo-letter logo-m3">M</span>
-            <span className="logo-letter logo-e">E</span>
-            <span className="logo-leaf">🌱</span>
-          </div>
-          <div className="header-wood-tag">
-            <span>Learn Play Explore!</span>
-          </div>
+        /* Top Left 3D App Logo */
+        <div className="header-logo-group" onClick={() => navigate('/home')} title="Mimi & Me Home">
+          <img
+            src="/images/icon.png"
+            alt="Mimi & Me"
+            className="header-app-logo-img animate-pop"
+            draggable={false}
+          />
         </div>
       ) : null}
 
