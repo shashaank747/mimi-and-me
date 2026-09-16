@@ -7,12 +7,12 @@
   width: 100%;
   position: relative;
   overflow-x: hidden;
-  background: #74C0FC url('/images/backgrounds/login_bg.jpg') no-repeat center bottom / cover fixed;
+  background: #73C2FB url('/images/login_bg.png') no-repeat center center / cover fixed;
   font-family: 'Nunito', sans-serif;
   user-select: none;
 }
 
-/* ── Landscape Background Elements ── */
+/* ── Interactive Stage ── */
 .login-scene-stage {
   position: relative;
   min-height: 100dvh;
@@ -20,62 +20,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem 1rem;
+  padding: 2.5rem 1rem 1.5rem;
 }
 
-.login-scene-bg {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.04) 0%, rgba(0, 0, 0, 0.08) 100%);
-  z-index: 0;
-}
-
-/* Ambient Floating Sparkles */
-.login-ambient-sparkles {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.sparkle-float {
-  position: absolute;
-  font-size: 1.8rem;
-  filter: drop-shadow(0 0 14px #FFD43B);
-  animation: floatSparkle 4s ease-in-out infinite alternate;
-}
-.sp-1 { top: 10%; left: 24%; animation-delay: 0s; }
-.sp-2 { top: 18%; right: 26%; animation-delay: 1.6s; font-size: 2.2rem; }
-.sp-3 { top: 72%; left: 16%; animation-delay: 2.8s; font-size: 1.5rem; }
-
-@keyframes floatSparkle {
-  0% { transform: translateY(0) scale(0.85) rotate(0deg); opacity: 0.6; }
-  100% { transform: translateY(-18px) scale(1.18) rotate(15deg); opacity: 1; }
-}
-
-.scene-grass-hill {
-  position: absolute;
-  bottom: -40px;
-  left: -5%;
-  right: -5%;
-  height: 120px;
-  background: linear-gradient(180deg, #82C91E 0%, #5C940D 50%, #375E03 100%);
-  border-radius: 50% 50% 0 0;
-  box-shadow: 0 -8px 25px rgba(0,0,0,0.15);
-}
-
-.scene-stone-path {
-  position: absolute;
-  bottom: 0;
-  left: 30%;
-  width: 40%;
-  height: 40px;
-  background: radial-gradient(ellipse at center, #F1D9B5 0%, #D8B88C 60%, transparent 85%);
-  opacity: 0.7;
-}
-
-/* ── Existing Profiles Switcher Pill ── */
+/* ── Existing Profiles Switcher Pill (Top Right) ── */
 .existing-profiles-badge {
   position: absolute;
   top: 1.2rem;
@@ -93,7 +41,7 @@
   font-size: 0.95rem;
   color: #C92A2A;
   cursor: pointer;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.14);
   transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.2s;
 }
 .existing-profiles-badge:hover {
@@ -104,130 +52,20 @@
 .existing-profiles-badge .badge-icon { font-size: 1.2rem; }
 .existing-profiles-badge .badge-arrow { font-weight: 900; }
 
-/* ── 3-Column Content Layout ── */
-.login-content-grid {
-  position: relative;
-  z-index: 10;
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 290px 1fr 270px;
-  gap: 1.5rem;
-  align-items: center;
-  justify-content: center;
-  padding-top: 1rem;
-}
-
-/* ============================================================
-   LEFT COLUMN: Hanging Sign + Mimi Bunny
-   ============================================================ */
-.login-left-col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  position: relative;
-}
-
-/* Hanging Wooden Signboard */
-.hanging-wood-sign {
-  position: relative;
-  width: 250px;
-  margin-bottom: 1.5rem;
-  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.2));
-}
-
-.rope-hanger {
+/* ── Speech Bubble over Mimi (Left Side) ── */
+.mimi-speech-bubble-overlay {
   position: absolute;
-  top: -45px;
-  width: 6px;
-  height: 52px;
-  background: repeating-linear-gradient(180deg, #A88158 0, #A88158 6px, #7A5834 6px, #7A5834 10px);
-  border-radius: 3px;
-  box-shadow: inset -1px 0 2px rgba(0,0,0,0.3);
-  z-index: 2;
-}
-.rope-left { left: 40px; }
-.rope-right { right: 40px; }
-
-.wood-plank-board {
-  position: relative;
-  background: linear-gradient(180deg, #F8BD7F 0%, #DE8C3A 50%, #BD6E22 100%);
-  border: 4px solid #783C0C;
-  border-radius: 20px;
-  padding: 0.85rem 1rem;
-  text-align: center;
-  box-shadow: inset 0 3px 6px rgba(255,255,255,0.4), inset 0 -4px 8px rgba(0,0,0,0.3), 0 8px 16px rgba(0,0,0,0.25);
-}
-
-.wood-screw {
-  position: absolute;
-  top: 10px;
-  width: 10px;
-  height: 10px;
-  background: radial-gradient(circle at 40% 40%, #E9ECEF 0%, #495057 100%);
-  border-radius: 50%;
-  border: 1px solid #212529;
-}
-.screw-top-left { left: 16px; }
-.screw-top-right { right: 16px; }
-
-.wood-logo-text {
-  font-size: 2rem;
-  font-weight: 900;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  line-height: 1.1;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-
-.logo-word-mimi {
-  color: #FF3366;
-  text-shadow: 2px 2px 0 #FFF, 0 3px 6px rgba(0,0,0,0.3);
-}
-.logo-word-amp {
-  color: #00B4D8;
-  font-size: 1.7rem;
-  margin: 0 2px;
-  text-shadow: 2px 2px 0 #FFF, 0 3px 6px rgba(0,0,0,0.3);
-}
-.logo-word-me {
-  color: #FF9E00;
-  text-shadow: 2px 2px 0 #FFF, 0 3px 6px rgba(0,0,0,0.3);
-}
-.logo-heart-sparkle {
-  font-size: 1.2rem;
-  margin-left: 2px;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-}
-
-.wood-subtitle-tag {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-size: 0.85rem;
-  font-weight: 900;
-  color: #431E06;
-  margin-top: 4px;
-  letter-spacing: 0.5px;
-}
-.bullet-dot { font-size: 0.7rem; color: #FF4D6D; }
-
-/* Speech Bubble */
-.mimi-speech-bubble-hero {
-  background: white;
+  left: max(2rem, calc(50% - 460px));
+  bottom: 270px;
+  background: #FFFFFF;
   border-radius: 22px;
   padding: 0.75rem 1.2rem;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.14);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
   border: 3px solid #FFE3EC;
-  position: relative;
-  margin-bottom: 0.8rem;
   text-align: center;
-  max-width: 220px;
+  max-width: 210px;
+  z-index: 10;
+  pointer-events: none;
 }
 .speech-content {
   display: flex;
@@ -247,249 +85,35 @@
 .speech-tail {
   position: absolute;
   bottom: -12px;
-  left: 35px;
+  left: 32px;
   width: 0;
   height: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-top: 13px solid white;
+  border-top: 13px solid #FFFFFF;
 }
-
-/* Mimi 3D Character */
-.mimi-3d-character-wrapper {
-  position: relative;
-  width: 210px;
-  height: 230px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-}
-
-.mimi-3d-avatar {
-  position: relative;
-  width: 170px;
-  height: 220px;
-}
-
-/* Ears */
-.bunny-ear {
-  position: absolute;
-  top: 0;
-  width: 38px;
-  height: 80px;
-  background: linear-gradient(180deg, #FFD1DF 0%, #FFB6C1 100%);
-  border-radius: 50% 50% 40% 40%;
-  box-shadow: inset 0 4px 8px #FFF, 0 6px 12px rgba(0,0,0,0.12);
-  z-index: 1;
-}
-.ear-inner {
-  position: absolute;
-  top: 12px;
-  left: 8px;
-  width: 22px;
-  height: 54px;
-  background: #FF85A1;
-  border-radius: 50% 50% 40% 40%;
-}
-.ear-left {
-  left: 28px;
-  transform: rotate(-14deg);
-}
-.ear-right {
-  right: 28px;
-  transform: rotate(18deg);
-}
-
-/* Head */
-.bunny-head {
-  position: absolute;
-  top: 48px;
-  left: 20px;
-  width: 130px;
-  height: 110px;
-  background: radial-gradient(circle at 45% 40%, #FFF0F5 0%, #FFD6E2 60%, #FFB9CD 100%);
-  border-radius: 50% 50% 45% 45%;
-  box-shadow: inset 0 5px 12px rgba(255,255,255,0.8), 0 10px 22px rgba(0,0,0,0.12);
-  z-index: 3;
-}
-
-.bunny-face {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.bunny-eye {
-  position: absolute;
-  top: 42px;
-  width: 18px;
-  height: 22px;
-  background: #212529;
-  border-radius: 50%;
-}
-.eye-l { left: 32px; }
-.eye-shine {
-  position: absolute;
-  top: 3px;
-  left: 4px;
-  width: 6px;
-  height: 6px;
-  background: white;
-  border-radius: 50%;
-}
-.eye-r.wink {
-  right: 32px;
-  background: transparent;
-}
-.wink-curve {
-  font-size: 2.2rem;
-  color: #212529;
-  font-weight: 900;
-  display: block;
-  transform: translateY(-8px);
-}
-
-.bunny-cheeks {
-  position: absolute;
-  top: 54px;
-  width: 24px;
-  height: 14px;
-  background: #FF6584;
-  border-radius: 50%;
-  opacity: 0.6;
-  filter: blur(1px);
-}
-.cheek-l { left: 16px; }
-.cheek-r { right: 16px; }
-
-.bunny-nose {
-  position: absolute;
-  top: 56px;
-  left: 59px;
-  width: 12px;
-  height: 9px;
-  background: #FF4D6D;
-  border-radius: 50% 50% 40% 40%;
-}
-
-.bunny-mouth {
-  position: absolute;
-  top: 68px;
-  left: 56px;
-  font-size: 1.1rem;
-  font-weight: 900;
-  color: #721C24;
-  line-height: 1;
-}
-
-/* Body */
-.bunny-body {
-  position: absolute;
-  top: 130px;
-  left: 32px;
-  width: 106px;
-  height: 85px;
-  background: radial-gradient(circle at 50% 35%, #FFF0F5 0%, #FFD6E2 65%, #FFBACD 100%);
-  border-radius: 50% 50% 40% 40%;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
-  z-index: 2;
-}
-
-.bunny-backpack {
-  position: absolute;
-  top: 5px;
-  left: -14px;
-  width: 44px;
-  height: 52px;
-  background: linear-gradient(180deg, #4DABF7 0%, #1971C2 100%);
-  border-radius: 12px;
-  border: 3px solid #1864AB;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  z-index: 4;
-}
-
-.carrot-charm {
-  position: absolute;
-  bottom: -10px;
-  left: 2px;
-  font-size: 1.1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  line-height: 0.8;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-}
-
-.bunny-paw {
-  position: absolute;
-  width: 32px;
-  height: 32px;
-  background: #FFE3EC;
-  border-radius: 50%;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  z-index: 5;
-}
-.paw-waving {
-  top: -12px;
-  right: -16px;
-  animation: wavePaw 1.8s ease-in-out infinite alternate;
-}
-.paw-pads {
-  width: 14px;
-  height: 14px;
-  background: #FF85A1;
-  border-radius: 50%;
-  margin: 9px auto;
-}
-.paw-left {
-  top: 15px;
-  left: 10px;
-}
-
-@keyframes wavePaw {
-  0% { transform: rotate(0deg); }
-  50% { transform: rotate(25deg); }
-  100% { transform: rotate(0deg); }
-}
-
-.bunny-foot {
-  position: absolute;
-  bottom: -8px;
-  width: 36px;
-  height: 22px;
-  background: #FFE3EC;
-  border-radius: 50%;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
-}
-.foot-left { left: 10px; }
-.foot-right { right: 10px; }
-
 
 /* ============================================================
-   CENTER COLUMN: The Login / Profile Form Card
+   MAIN HOVER / FLOATING CARD (Center)
    ============================================================ */
-.login-center-col {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
 .login-main-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(12px);
+  z-index: 15;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(14px);
   border-radius: 32px;
   padding: 2.2rem 2rem 1.8rem;
   width: 100%;
   max-width: 480px;
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.18), 0 6px 16px rgba(0, 0, 0, 0.06), inset 0 2px 0 #FFFFFF;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.22), 0 8px 20px rgba(0, 0, 0, 0.08), inset 0 2px 0 #FFFFFF;
   border: 4px solid #FFF5F7;
   transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+  margin-top: 1.5rem;
 }
 
 .login-main-card:hover {
   transform: translateY(-8px) scale(1.015);
-  box-shadow: 0 30px 65px rgba(0, 0, 0, 0.24), 0 10px 24px rgba(255, 77, 109, 0.18), inset 0 2px 0 #FFFFFF;
+  box-shadow: 0 32px 65px rgba(0, 0, 0, 0.28), 0 12px 28px rgba(255, 77, 109, 0.22), inset 0 2px 0 #FFFFFF;
 }
 
 /* Bunny Topper Badge */
@@ -503,7 +127,7 @@
   background: #FFF0F5;
   border: 3px solid #FFBACD;
   border-radius: 50% 50% 40% 40%;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.14);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -556,7 +180,7 @@
   opacity: 0.7;
 }
 
-/* Header */
+/* Header inside Card */
 .card-header-group {
   text-align: center;
   margin-top: 0.3rem;
@@ -604,11 +228,11 @@
   gap: 6px;
   font-size: 0.95rem;
   font-weight: 700;
-  color: #3B82F6;
 }
 .card-subtitle-divider p {
   color: #475569;
   font-weight: 700;
+  margin: 0;
 }
 .sub-dash {
   color: #0284C7;
@@ -777,166 +401,13 @@
   opacity: 0.9;
 }
 
-
-/* ============================================================
-   RIGHT COLUMN: Directional Signpost & 3D ABC Blocks
-   ============================================================ */
-.login-right-col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  position: relative;
-}
-
-/* Wooden Directional Signpost */
-.directional-signpost {
-  position: relative;
-  width: 210px;
-  margin-bottom: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.2));
-}
-
-.signpost-main-pole {
-  position: absolute;
-  top: -10px;
-  bottom: -30px;
-  width: 24px;
-  background: linear-gradient(90deg, #A86F3E 0%, #7E4B25 50%, #563318 100%);
-  border-radius: 6px;
-  box-shadow: inset 2px 0 4px rgba(255,255,255,0.2), 0 6px 12px rgba(0,0,0,0.3);
-  z-index: 1;
-}
-
-.signpost-arrow {
-  position: relative;
-  z-index: 2;
-  width: 190px;
-  height: 44px;
-  margin-bottom: 12px;
-  background: linear-gradient(180deg, #F9C38B 0%, #E39546 50%, #C47225 100%);
-  border: 3px solid #783C0C;
-  border-right: none;
-  border-radius: 10px 0 0 10px;
-  display: flex;
-  align-items: center;
-  padding-left: 14px;
-  gap: 8px;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-}
-
-/* Pointy tip on right side of wooden plank */
-.arrow-point {
-  position: absolute;
-  right: -24px;
-  top: -3px;
-  width: 0;
-  height: 0;
-  border-top: 22px solid transparent;
-  border-bottom: 22px solid transparent;
-  border-left: 24px solid #C47225;
-}
-.arrow-point::before {
-  content: '';
-  position: absolute;
-  right: 3px;
-  top: -19px;
-  border-top: 19px solid transparent;
-  border-bottom: 19px solid transparent;
-  border-left: 21px solid #E39546;
-}
-
-.arrow-smarter {
-  transform: rotate(-3deg);
-  background: linear-gradient(180deg, #FBD38D 0%, #ED8936 100%);
-}
-.arrow-brighter {
-  transform: rotate(2deg);
-  background: linear-gradient(180deg, #FEB2B2 0%, #E53E3E 100%);
-}
-.arrow-happier {
-  transform: rotate(-1deg);
-  background: linear-gradient(180deg, #C6F6D5 0%, #38A169 100%);
-}
-
-.sign-icon {
-  font-size: 1.25rem;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
-}
-.sign-text {
-  font-size: 1.15rem;
-  font-weight: 900;
-  color: #3E1E05;
-  text-shadow: 1px 1px 0 rgba(255,255,255,0.4);
-}
-
-/* 3D Toy ABC Blocks */
-.abc-blocks-cluster {
-  position: relative;
-  width: 200px;
-  height: 140px;
-}
-
-.block-3d {
-  position: absolute;
-  width: 58px;
-  height: 58px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  font-weight: 900;
-  color: white;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.25);
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-
-.block-a {
-  top: 0;
-  left: 65px;
-  background: linear-gradient(135deg, #FEE140 0%, #FA709A 100%);
-  border: 3px solid #FFA000;
-  color: #FFF;
-  z-index: 3;
-}
-.block-b {
-  bottom: 0;
-  left: 25px;
-  background: linear-gradient(135deg, #4FACFE 0%, #00F2FE 100%);
-  border: 3px solid #0288D1;
-  z-index: 2;
-}
-.block-c {
-  bottom: 0;
-  right: 25px;
-  background: linear-gradient(135deg, #FF6FD8 0%, #3813C2 100%);
-  border: 3px solid #C2185B;
-  z-index: 2;
-}
-
-.cluster-flowers {
-  position: absolute;
-  bottom: -15px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-around;
-  font-size: 1.3rem;
-  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.2));
-}
-
-
 /* ============================================================
    MODAL: Choose Who is Playing (Existing Profiles)
    ============================================================ */
 .profile-select-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(8px);
   z-index: 100;
   display: flex;
@@ -1049,18 +520,15 @@
   color: #FF4D6D;
 }
 
-
 /* ============================================================
-   RESPONSIVE DESIGN (Tablets & Mobiles)
+   RESPONSIVE DESIGN
    ============================================================ */
-@media (max-width: 1080px) {
-  .login-content-grid {
-    grid-template-columns: 1fr;
-    max-width: 520px;
-    gap: 2rem;
-  }
-  .login-left-col, .login-right-col {
+@media (max-width: 960px) {
+  .mimi-speech-bubble-overlay {
     display: none;
+  }
+  .login-main-card {
+    max-width: 440px;
   }
 }
 
