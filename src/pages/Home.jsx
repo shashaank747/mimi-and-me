@@ -174,11 +174,24 @@ export default function Home() {
                 onClick={() => handleNavigate('/rewards')}
                 aria-label="Rewards"
               >
-                <div className="pod-mound">
-                  <span className="pod-3d-icon chest-glow">🎁</span>
-                </div>
-                <div className="pod-pill-label">
-                  <span>Rewards</span>
+                <img
+                  src="/images/island/reward.png"
+                  alt="Rewards"
+                  className="pod-hero-img"
+                  draggable={false}
+                  onError={(e) => {
+                    // graceful fallback to icon if image fails
+                    e.target.style.display = 'none';
+                    if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
+                  }}
+                />
+                <div className="pod-fallback-content" style={{ display: 'none' }}>
+                  <div className="pod-mound">
+                    <span className="pod-3d-icon chest-glow">🎁</span>
+                  </div>
+                  <div className="pod-pill-label">
+                    <span>Rewards</span>
+                  </div>
                 </div>
               </button>
 
@@ -189,11 +202,24 @@ export default function Home() {
                 onClick={() => handleNavigate('/settings')}
                 aria-label="Settings"
               >
-                <div className="pod-mound">
-                  <span className="pod-3d-icon gear-spin">⚙️</span>
-                </div>
-                <div className="pod-pill-label">
-                  <span>Settings</span>
+                <img
+                  src="/images/island/settings.png"
+                  alt="Settings"
+                  className="pod-hero-img"
+                  draggable={false}
+                  onError={(e) => {
+                    // graceful fallback to icon if image fails
+                    e.target.style.display = 'none';
+                    if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
+                  }}
+                />
+                <div className="pod-fallback-content" style={{ display: 'none' }}>
+                  <div className="pod-mound">
+                    <span className="pod-3d-icon gear-spin">⚙️</span>
+                  </div>
+                  <div className="pod-pill-label">
+                    <span>Settings</span>
+                  </div>
                 </div>
               </button>
             </div>
