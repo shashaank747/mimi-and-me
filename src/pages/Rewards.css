@@ -23,239 +23,457 @@
   font-size: var(--font-size-sm);
   color: var(--color-text-light);
   cursor: pointer;
-  transition: background var(--transition-fast), color var(--transition-fast);
+  transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-spring);
   min-height: var(--tap-min);
+}
+
+.rewards-tab:hover {
+  transform: translateY(-2px);
 }
 
 .rewards-tab--active {
   background: var(--color-primary);
   color: white;
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.35);
 }
 
 .rewards-content { width: 100%; }
 
-/* Sticker Book */
-.sticker-book-count {
-  font-size: var(--font-size-md);
+/* ============================================================
+   1. STICKER ALBUM & SCENIC CANVAS
+   ============================================================ */
+.sticker-album-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sticker-book-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.sticker-count-badge {
+  font-size: 1rem;
+  font-weight: 900;
+  color: #D97706;
+  background: #FEF3C7;
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 2px solid #FDE68A;
+}
+
+.sticker-hint {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #64748B;
+}
+
+/* Scenic Canvas */
+.sticker-canvas-scene {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  background: linear-gradient(180deg, #BAE6FD 0%, #E0F2FE 50%, #BBF7D0 80%, #86EFAC 100%);
+  border-radius: 24px;
+  border: 4px solid #FFFFFF;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.12), inset 0 2px 6px rgba(255,255,255,0.6);
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+.canvas-landscape {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.canvas-sun {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 2.2rem;
+  animation: pulse 3s infinite alternate;
+}
+.canvas-clouds {
+  position: absolute;
+  top: 30px;
+  left: 40px;
+  font-size: 1.6rem;
+  opacity: 0.8;
+}
+.canvas-mimi-peek {
+  position: absolute;
+  bottom: 10px;
+  right: 30px;
+  font-size: 2.5rem;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+}
+
+.canvas-placed-sticker {
+  position: absolute;
+  font-size: 2.5rem;
+  cursor: pointer;
+  user-select: none;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.25));
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 10;
+}
+.canvas-placed-sticker:hover {
+  transform: scale(1.35) rotate(10deg) !important;
+  filter: drop-shadow(0 8px 16px rgba(255, 77, 109, 0.4));
+}
+
+.clear-stickers-btn {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #E2E8F0;
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-family: inherit;
+  font-size: 0.8rem;
   font-weight: 800;
-  text-align: center;
-  color: var(--color-text-light);
-  margin-bottom: var(--space-4);
+  color: #475569;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  transition: background 0.2s;
+}
+.clear-stickers-btn:hover {
+  background: #FFF0F5;
+  border-color: #FF4D6D;
+  color: #FF4D6D;
+}
+
+/* Drawer */
+.sticker-drawer-card {
+  padding: 1.5rem;
+}
+.drawer-title {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #1E293B;
+  margin-bottom: 1rem;
 }
 
 .sticker-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-3);
+  grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
+  gap: 0.85rem;
 }
 
 .sticker-slot {
-  aspect-ratio: 1;
-  background: var(--color-bg);
-  border: 3px dashed var(--color-border);
-  border-radius: var(--radius-lg);
+  background: #F8FAFC;
+  border: 2.5px dashed #CBD5E1;
+  border-radius: 16px;
+  padding: 0.8rem 0.4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--space-1);
-  transition: transform var(--transition-spring);
+  gap: 4px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  font-family: inherit;
 }
 
 .sticker-slot--unlocked {
-  background: white;
+  background: #FFFFFF;
   border-style: solid;
-  border-color: var(--color-accent);
-  animation: bounceIn 0.4s ease;
+  border-color: #FFD43B;
+  box-shadow: 0 4px 10px rgba(255, 212, 59, 0.2);
+}
+.sticker-slot--unlocked:hover {
+  transform: translateY(-4px) scale(1.05);
+  border-color: #FF6B8B;
+  box-shadow: 0 8px 16px rgba(255, 107, 139, 0.25);
 }
 
-.sticker-emoji { font-size: 1.75rem; }
-.sticker-name  { font-size: 0.6rem; font-weight: 700; color: var(--color-text-muted); text-align: center; }
-
-/* Dress Mimi */
-.dress-mimi {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
+.sticker-slot--locked {
+  opacity: 0.55;
+  cursor: not-allowed;
 }
 
-.dress-mimi-preview {
+.sticker-emoji { font-size: 1.9rem; }
+.sticker-name  { font-size: 0.72rem; font-weight: 800; color: #334155; text-align: center; }
+.tap-stamp-tag { font-size: 0.62rem; font-weight: 900; color: #FF4D6D; background: #FFF0F3; padding: 2px 6px; border-radius: 8px; }
+
+
+/* ============================================================
+   2. DRESS UP MIMI
+   ============================================================ */
+.dress-mimi-stage {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 1.5rem;
+}
+
+.dress-mimi-dressing-room {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: white;
-  border-radius: var(--radius-xl);
-  padding: var(--space-6);
-  box-shadow: var(--shadow-sm);
+  padding: 1.5rem 1rem;
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFF5F7 100%);
+  border: 3px solid #FFE3EC;
+}
+
+.mimi-runway-platform {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.mimi-character-mannequin {
   position: relative;
 }
 
-.dress-mimi-equipped {
-  display: flex;
-  gap: var(--space-2);
+.overlaid-accessories {
   position: absolute;
-  top: var(--space-3);
-  right: var(--space-4);
-  flex-direction: column;
+  inset: 0;
+  pointer-events: none;
 }
 
-.equipped-item { font-size: 1.5rem; }
+.acc-layer {
+  position: absolute;
+  font-size: 2.2rem;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.25));
+}
+.acc-hat {
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.acc-glasses {
+  top: 42px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.8rem;
+}
+.acc-bag {
+  top: 75px;
+  right: 15px;
+  font-size: 1.6rem;
+}
+.acc-clothes {
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.mimi-speech-outfit {
+  background: white;
+  border-radius: 14px;
+  padding: 4px 12px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #FF4D6D;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  border: 1.5px solid #FFE3EC;
+  margin-top: 6px;
+}
+
+.equipped-pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: center;
+}
+.equipped-slot-pill {
+  background: #F1F5F9;
+  border-radius: 12px;
+  padding: 3px 8px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #64748B;
+  display: flex;
+  gap: 3px;
+}
+.equipped-slot-pill.is-active {
+  background: #FFF0F5;
+  color: #FF3366;
+  border: 1px solid #FFBACD;
+}
+
+.wardrobe-closet {
+  padding: 1.5rem;
+}
+
+.wardrobe-filter-tabs {
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  margin-bottom: 1.2rem;
+  padding-bottom: 4px;
+}
+
+.wardrobe-tab {
+  background: #F8FAFC;
+  border: 2px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 6px 14px;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.wardrobe-tab.is-active {
+  background: #FF6B8B;
+  border-color: #FF4D6D;
+  color: white;
+}
 
 .outfit-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-3);
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 0.85rem;
 }
 
 .outfit-item {
-  background: white;
-  border: 3px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-3);
+  background: #FAFAFA;
+  border: 2.5px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 1rem 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-1);
+  gap: 4px;
   cursor: pointer;
-  min-height: var(--tap-large);
-  transition: transform var(--transition-spring), border-color var(--transition-fast);
-  font-family: var(--font-primary);
-  -webkit-tap-highlight-color: transparent;
+  font-family: inherit;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.outfit-item--unlocked:hover { transform: scale(1.05); border-color: var(--color-primary); }
-.outfit-item--equipped { border-color: var(--color-success); background: #F0FDF4; }
-.outfit-item--locked   { opacity: 0.5; cursor: not-allowed; background: #F9FAFB; }
-.outfit-item-emoji { font-size: 1.75rem; }
-.outfit-item-name  { font-size: var(--font-size-xs); font-weight: 800; color: var(--color-text); }
-.outfit-item-cost  { font-size: var(--font-size-xs); font-weight: 700; color: var(--color-star); }
-
-/* Room */
-.room-preview {
-  background: linear-gradient(135deg, #B2DEFF, #FFE4B5);
-  border-radius: var(--radius-xl);
-  padding: var(--space-8);
-  text-align: center;
-  margin-bottom: var(--space-4);
-  font-size: var(--font-size-xl);
-  font-weight: 900;
+.outfit-item--unlocked:hover {
+  border-color: #FF6B8B;
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(255, 107, 139, 0.2);
 }
+
+.outfit-item--equipped {
+  background: #FFF0F5;
+  border-color: #FF4D6D;
+  box-shadow: 0 0 0 3px rgba(255, 77, 109, 0.2);
+}
+
+.outfit-item-emoji { font-size: 2.2rem; }
+.outfit-item-name  { font-size: 0.75rem; font-weight: 800; color: #1E293B; text-align: center; }
+.outfit-equipped-tag { font-size: 0.65rem; font-weight: 900; color: #15803D; background: #DCFCE7; padding: 2px 8px; border-radius: 10px; }
+.outfit-wear-tag { font-size: 0.65rem; font-weight: 900; color: #FF4D6D; background: #FFF0F3; padding: 2px 8px; border-radius: 10px; }
+.outfit-item-cost { font-size: 0.7rem; font-weight: 800; color: #D97706; background: #FEF3C7; padding: 2px 8px; border-radius: 10px; }
+
+
+/* ============================================================
+   3. MIMI'S COZY 3D ROOM DECORATOR
+   ============================================================ */
+.room-scene-canvas {
+  height: 260px;
+  position: relative;
+  background: #FFF9F0;
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  border: 4px solid #FFFFFF;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+}
+
+.room-wall {
+  height: 55%;
+  background: linear-gradient(180deg, #FDE2E4 0%, #FFCAD4 100%);
+  position: relative;
+  border-bottom: 6px solid #E29578;
+}
+
+.room-window {
+  position: absolute;
+  top: 15px;
+  left: 25px;
+  font-size: 2.2rem;
+  background: #E0F2FE;
+  border-radius: 12px;
+  padding: 4px;
+  border: 2px solid #38BDF8;
+}
+.room-poster { position: absolute; top: 20px; left: 120px; font-size: 1.8rem; }
+.room-lamp { position: absolute; top: 12px; right: 40px; font-size: 2rem; animation: pulse 2s infinite; }
+
+.room-floor {
+  height: 45%;
+  background: linear-gradient(180deg, #DDBEA9 0%, #CB997E 100%);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 1rem;
+}
+
+.room-rug { position: absolute; bottom: 10px; left: 35%; font-size: 3rem; opacity: 0.85; }
+.room-bookshelf { position: absolute; bottom: 18px; left: 30px; font-size: 2.4rem; }
+.room-toy { position: absolute; bottom: 15px; right: 140px; font-size: 2rem; }
+.room-plant { position: absolute; bottom: 18px; right: 40px; font-size: 2rem; }
+.room-trophy { position: absolute; top: -45px; right: 120px; font-size: 1.8rem; }
+
+.room-mimi-host {
+  position: absolute;
+  bottom: 5px;
+  left: 45%;
+  transform: translateX(-50%);
+  z-index: 5;
+}
+
+.room-catalog {
+  padding: 1.5rem;
+}
+.catalog-title { font-size: 1.15rem; font-weight: 900; color: #1E293B; }
+.catalog-sub { font-size: 0.82rem; font-weight: 600; color: #64748B; margin-bottom: 1rem; }
 
 .room-items-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-3);
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 0.85rem;
 }
 
-.room-item {
-  background: white;
-  border: 3px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-3);
+.room-catalog-item {
+  background: #FAFAFA;
+  border: 2.5px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 1rem 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-1);
-  text-align: center;
+  gap: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.room-item--unlocked { border-color: var(--color-accent); }
-.room-item--placed   { background: #F0FDF4; border-color: var(--color-success); }
-.room-item--locked   { opacity: 0.5; background: #F9FAFB; }
-.room-item-emoji { font-size: 1.75rem; }
-.room-item-name  { font-size: var(--font-size-xs); font-weight: 800; color: var(--color-text); }
-.room-item-cost  { font-size: var(--font-size-xs); font-weight: 700; color: var(--color-star); }
-
-/* ── Tablet & Desktop Layouts ── */
-@media (min-width: 768px) {
-  .rewards-page {
-    gap: var(--space-6);
-  }
-
-  .rewards-tabs {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .rewards-tab {
-    font-size: var(--font-size-md);
-    padding: var(--space-4);
-  }
-
-  .sticker-grid {
-    grid-template-columns: repeat(6, 1fr);
-    gap: var(--space-4);
-  }
-
-  .sticker-slot {
-    padding: var(--space-3);
-  }
-
-  .sticker-emoji {
-    font-size: 2.5rem;
-  }
-
-  .sticker-name {
-    font-size: var(--font-size-xs);
-  }
-
-  .dress-mimi {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: var(--space-8);
-    align-items: start;
-  }
-
-  .outfit-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-4);
-  }
-
-  .outfit-item {
-    padding: var(--space-4);
-  }
-
-  .outfit-item-emoji {
-    font-size: 2.5rem;
-  }
-
-  .outfit-item-name {
-    font-size: var(--font-size-sm);
-  }
-
-  .room-preview {
-    padding: var(--space-12);
-    font-size: var(--font-size-2xl);
-  }
-
-  .room-items-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-4);
-  }
-
-  .room-item {
-    padding: var(--space-4);
-  }
-
-  .room-item-emoji {
-    font-size: 2.5rem;
-  }
-
-  .room-item-name {
-    font-size: var(--font-size-sm);
-  }
+.room-catalog-item.is-unlocked:hover {
+  border-color: #FF6B8B;
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(255, 107, 139, 0.2);
 }
 
-@media (min-width: 1024px) {
-  .sticker-grid {
-    grid-template-columns: repeat(8, 1fr);
-  }
+.room-catalog-item.is-placed {
+  background: #F0FDF4;
+  border-color: #22C55E;
+}
 
-  .outfit-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
+.room-placed-badge { font-size: 0.65rem; font-weight: 900; color: #15803D; background: #DCFCE7; padding: 2px 8px; border-radius: 10px; }
+.room-place-btn-tag { font-size: 0.65rem; font-weight: 900; color: #2563EB; background: #DBEAFE; padding: 2px 8px; border-radius: 10px; }
 
-  .room-items-grid {
-    grid-template-columns: repeat(5, 1fr);
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dress-mimi-stage {
+    grid-template-columns: 1fr;
   }
 }
