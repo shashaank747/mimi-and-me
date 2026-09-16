@@ -142,7 +142,7 @@ export default function Home() {
               {/* Achievements Pod */}
               <button
                 id="pod-achievements-btn"
-                className="mini-garden-pod pod--achievements animate-fadeInUp"
+                className="mini-garden-pod pod--achievements animate-float delay-1"
                 onClick={() => handleNavigate('/achievements')}
                 aria-label="Achievements"
               >
@@ -170,7 +170,7 @@ export default function Home() {
               {/* Rewards Pod */}
               <button
                 id="pod-rewards-btn"
-                className="mini-garden-pod pod--rewards animate-fadeInUp delay-1"
+                className="mini-garden-pod pod--rewards animate-float delay-2"
                 onClick={() => handleNavigate('/rewards')}
                 aria-label="Rewards"
               >
@@ -198,7 +198,7 @@ export default function Home() {
               {/* Settings Pod */}
               <button
                 id="pod-settings-btn"
-                className="mini-garden-pod pod--settings animate-fadeInUp delay-2"
+                className="mini-garden-pod pod--settings animate-float delay-3"
                 onClick={() => handleNavigate('/settings')}
                 aria-label="Settings"
               >
