@@ -63,8 +63,9 @@ export default function App() {
           {/* Root redirect */}
           <Route path="/" element={<Navigate to={initialRoute} replace />} />
 
-          {/* Profile */}
+          {/* Profile / Login */}
           <Route path="/profile-select" element={<ProfilePage />} />
+          <Route path="/login" element={<ProfilePage />} />
 
           {/* Protected routes */}
           <Route path="/home" element={<RequireProfile><Home /></RequireProfile>} />

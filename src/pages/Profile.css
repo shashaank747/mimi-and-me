@@ -1,184 +1,1254 @@
-/* Profile Page Styles */
-.profile-select-page,
-.create-profile-page {
-  gap: var(--space-6);
-  padding-top: var(--space-8);
-}
+/* ============================================================
+   MIMI & ME — Master Login / Onboarding Page Styles
+   ============================================================ */
 
-.profile-select-header,
-.create-profile-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-4);
-}
-
-.profile-select-title,
-.create-profile-title {
-  font-size: var(--font-size-2xl);
-  font-weight: 900;
-  text-align: center;
-  color: var(--color-text);
-  line-height: 1.15;
-}
-
-/* Profile grid */
-.profile-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-4);
+.login-page-wrapper {
+  min-height: 100dvh;
   width: 100%;
+  position: relative;
+  overflow-x: hidden;
+  background: linear-gradient(180deg, #74C0FC 0%, #A5D8FF 25%, #D0EBFF 50%, #E7F5FF 70%, #D8F5A2 88%, #96E072 100%);
+  font-family: 'Nunito', sans-serif;
+  user-select: none;
 }
 
-.profile-card {
-  background: white;
-  border: 3px solid var(--color-border);
-  border-radius: var(--radius-xl);
-  padding: var(--space-5) var(--space-4);
+/* ── Landscape Background Elements ── */
+.login-scene-stage {
+  position: relative;
+  min-height: 100dvh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+}
+
+.login-scene-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Background image overlay if available */
+.login-scene-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/Worlds/png/sunny-meadow.png');
+  background-size: cover;
+  background-position: center bottom;
+  opacity: 0.65;
+}
+
+/* Clouds in sky */
+.bg-sky-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+}
+
+.cloud {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 50px;
+  filter: blur(1px);
+}
+.cloud::after, .cloud::before {
+  content: '';
+  position: absolute;
+  background: inherit;
+  border-radius: 50%;
+}
+.cloud-1 {
+  width: 180px; height: 50px; top: 8%; left: 8%;
+  animation: floatCloud 28s linear infinite;
+}
+.cloud-1::after { width: 70px; height: 70px; top: -35px; left: 30px; }
+.cloud-1::before { width: 50px; height: 50px; top: -20px; left: 85px; }
+
+.cloud-2 {
+  width: 220px; height: 60px; top: 18%; right: 12%;
+  animation: floatCloud 36s linear infinite reverse;
+}
+.cloud-2::after { width: 90px; height: 90px; top: -45px; left: 40px; }
+.cloud-2::before { width: 60px; height: 60px; top: -25px; left: 110px; }
+
+.cloud-3 {
+  width: 140px; height: 40px; top: 25%; left: 45%;
+  opacity: 0.7;
+}
+
+@keyframes floatCloud {
+  0% { transform: translateX(-40px); }
+  50% { transform: translateX(40px); }
+  100% { transform: translateX(-40px); }
+}
+
+/* Sunlight Sparkles */
+.sun-sparkles {
+  position: absolute;
+  top: 4%;
+  right: 25%;
+  font-size: 2.2rem;
+  color: #FFF3BF;
+  filter: drop-shadow(0 0 12px #FFD43B);
+  animation: sparkleTwinkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes sparkleTwinkle {
+  0% { transform: scale(0.9) rotate(0deg); opacity: 0.8; }
+  100% { transform: scale(1.15) rotate(15deg); opacity: 1; }
+}
+
+/* Tree on Left */
+.scene-tree-left {
+  position: absolute;
+  bottom: 0;
+  left: -20px;
+  width: 280px;
+  height: 90%;
+  pointer-events: none;
+}
+.tree-foliage.f1 {
+  position: absolute;
+  top: 0;
+  left: -40px;
+  width: 320px;
+  height: 260px;
+  background: radial-gradient(circle at 35% 35%, #8CE99A 0%, #51CF66 60%, #2F9E44 100%);
+  border-radius: 50% 60% 50% 40%;
+  box-shadow: inset -10px -15px 30px rgba(0,0,0,0.15), 0 15px 30px rgba(0,0,0,0.12);
+}
+.tree-foliage.f2 {
+  position: absolute;
+  top: 90px;
+  left: 20px;
+  width: 260px;
+  height: 220px;
+  background: radial-gradient(circle at 40% 30%, #69DB7C 0%, #40C057 60%, #2B8A3E 100%);
+  border-radius: 60% 40% 50% 50%;
+  box-shadow: inset -8px -12px 25px rgba(0,0,0,0.18);
+}
+.tree-trunk {
+  position: absolute;
+  bottom: 0;
+  left: 30px;
+  width: 85px;
+  height: 65%;
+  background: linear-gradient(90deg, #A26B3E 0%, #7E4B25 45%, #563318 100%);
+  border-radius: 12px 24px 0 0;
+  box-shadow: inset 4px 0 8px rgba(255,255,255,0.2), inset -6px 0 12px rgba(0,0,0,0.35);
+}
+.tree-branch {
+  position: absolute;
+  top: 180px;
+  left: 70px;
+  width: 200px;
+  height: 26px;
+  background: linear-gradient(180deg, #965B2D 0%, #6E3B18 100%);
+  border-radius: 0 14px 14px 0;
+  transform: rotate(6deg);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+}
+
+/* Treehouse on Right */
+.scene-treehouse-right {
+  position: absolute;
+  bottom: 120px;
+  right: 20px;
+  width: 240px;
+  height: 320px;
+  pointer-events: none;
+  opacity: 0.95;
+}
+.treehouse-foliage {
+  position: absolute;
+  top: 0;
+  right: -20px;
+  width: 260px;
+  height: 240px;
+  background: radial-gradient(circle at 40% 35%, #8CE99A 0%, #40C057 65%, #2B8A3E 100%);
+  border-radius: 50% 50% 45% 45%;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+.treehouse-cabin {
+  position: absolute;
+  top: 70px;
+  right: 40px;
+  width: 140px;
+  height: 120px;
+  background: linear-gradient(180deg, #F08C00 0%, #D9480F 100%);
+  border: 4px solid #862E04;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-2);
-  cursor: pointer;
-  transition: transform var(--transition-spring), border-color var(--transition-fast), box-shadow var(--transition-fast);
-  box-shadow: var(--shadow-sm);
-  -webkit-tap-highlight-color: transparent;
-  font-family: var(--font-primary);
+}
+.treehouse-roof {
+  position: absolute;
+  top: -30px;
+  width: 165px;
+  height: 38px;
+  background: linear-gradient(180deg, #FF6B6B 0%, #C92A2A 100%);
+  border-radius: 20px 20px 0 0;
+  border: 3px solid #862E04;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.treehouse-window {
+  margin-top: 18px;
+  font-size: 1.8rem;
+  background: #E7F5FF;
+  border: 3px solid #1971C2;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.treehouse-ladder {
+  position: absolute;
+  bottom: -90px;
+  left: 20px;
+  width: 32px;
+  height: 95px;
+  border-left: 5px solid #862E04;
+  border-right: 5px solid #862E04;
+  background: repeating-linear-gradient(180deg, transparent 0, transparent 15px, #862E04 15px, #862E04 20px);
 }
 
-.profile-card:hover  { border-color: var(--color-primary); transform: translateY(-4px); box-shadow: var(--shadow-card); }
-.profile-card:active { transform: scale(0.94); }
+/* Wooden Fence and Hills */
+.scene-wooden-fence {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: repeating-linear-gradient(90deg, #C29668 0, #C29668 18px, transparent 18px, transparent 32px);
+  border-top: 5px solid #8C582B;
+  opacity: 0.6;
+}
 
-.profile-card-avatar {
-  font-size: 2.5rem;
+.scene-grass-hill {
+  position: absolute;
+  bottom: -40px;
+  left: -5%;
+  right: -5%;
+  height: 120px;
+  background: linear-gradient(180deg, #82C91E 0%, #5C940D 50%, #375E03 100%);
+  border-radius: 50% 50% 0 0;
+  box-shadow: 0 -8px 25px rgba(0,0,0,0.15);
+}
+
+.scene-stone-path {
+  position: absolute;
+  bottom: 0;
+  left: 30%;
+  width: 40%;
+  height: 40px;
+  background: radial-gradient(ellipse at center, #F1D9B5 0%, #D8B88C 60%, transparent 85%);
+  opacity: 0.7;
+}
+
+/* ── Existing Profiles Switcher Pill ── */
+.existing-profiles-badge {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.5rem;
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  border: 2px solid #FF8787;
+  border-radius: 30px;
+  padding: 0.5rem 1.1rem;
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #C92A2A;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.2s;
+}
+.existing-profiles-badge:hover {
+  transform: translateY(-2px) scale(1.04);
+  background: #FFF5F5;
+  border-color: #FA5252;
+}
+.existing-profiles-badge .badge-icon { font-size: 1.2rem; }
+.existing-profiles-badge .badge-arrow { font-weight: 900; }
+
+/* ── 3-Column Content Layout ── */
+.login-content-grid {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 290px 1fr 270px;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+/* ============================================================
+   LEFT COLUMN: Hanging Sign + Mimi Bunny
+   ============================================================ */
+.login-left-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+}
+
+/* Hanging Wooden Signboard */
+.hanging-wood-sign {
+  position: relative;
+  width: 250px;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.2));
+}
+
+.rope-hanger {
+  position: absolute;
+  top: -45px;
+  width: 6px;
+  height: 52px;
+  background: repeating-linear-gradient(180deg, #A88158 0, #A88158 6px, #7A5834 6px, #7A5834 10px);
+  border-radius: 3px;
+  box-shadow: inset -1px 0 2px rgba(0,0,0,0.3);
+  z-index: 2;
+}
+.rope-left { left: 40px; }
+.rope-right { right: 40px; }
+
+.wood-plank-board {
+  position: relative;
+  background: linear-gradient(180deg, #F8BD7F 0%, #DE8C3A 50%, #BD6E22 100%);
+  border: 4px solid #783C0C;
+  border-radius: 20px;
+  padding: 0.85rem 1rem;
+  text-align: center;
+  box-shadow: inset 0 3px 6px rgba(255,255,255,0.4), inset 0 -4px 8px rgba(0,0,0,0.3), 0 8px 16px rgba(0,0,0,0.25);
+}
+
+.wood-screw {
+  position: absolute;
+  top: 10px;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle at 40% 40%, #E9ECEF 0%, #495057 100%);
+  border-radius: 50%;
+  border: 1px solid #212529;
+}
+.screw-top-left { left: 16px; }
+.screw-top-right { right: 16px; }
+
+.wood-logo-text {
+  font-size: 2rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  line-height: 1.1;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.logo-word-mimi {
+  color: #FF3366;
+  text-shadow: 2px 2px 0 #FFF, 0 3px 6px rgba(0,0,0,0.3);
+}
+.logo-word-amp {
+  color: #00B4D8;
+  font-size: 1.7rem;
+  margin: 0 2px;
+  text-shadow: 2px 2px 0 #FFF, 0 3px 6px rgba(0,0,0,0.3);
+}
+.logo-word-me {
+  color: #FF9E00;
+  text-shadow: 2px 2px 0 #FFF, 0 3px 6px rgba(0,0,0,0.3);
+}
+.logo-heart-sparkle {
+  font-size: 1.2rem;
+  margin-left: 2px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.wood-subtitle-tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: #431E06;
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+}
+.bullet-dot { font-size: 0.7rem; color: #FF4D6D; }
+
+/* Speech Bubble */
+.mimi-speech-bubble-hero {
+  background: white;
+  border-radius: 22px;
+  padding: 0.75rem 1.2rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.14);
+  border: 3px solid #FFE3EC;
+  position: relative;
+  margin-bottom: 0.8rem;
+  text-align: center;
+  max-width: 220px;
+}
+.speech-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.speech-title {
+  color: #FF3366;
+  font-size: 1.15rem;
+  font-weight: 900;
+}
+.speech-sub {
+  color: #495057;
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+.speech-tail {
+  position: absolute;
+  bottom: -12px;
+  left: 35px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 13px solid white;
+}
+
+/* Mimi 3D Character */
+.mimi-3d-character-wrapper {
+  position: relative;
+  width: 210px;
+  height: 230px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.mimi-3d-avatar {
+  position: relative;
+  width: 170px;
+  height: 220px;
+}
+
+/* Ears */
+.bunny-ear {
+  position: absolute;
+  top: 0;
+  width: 38px;
+  height: 80px;
+  background: linear-gradient(180deg, #FFD1DF 0%, #FFB6C1 100%);
+  border-radius: 50% 50% 40% 40%;
+  box-shadow: inset 0 4px 8px #FFF, 0 6px 12px rgba(0,0,0,0.12);
+  z-index: 1;
+}
+.ear-inner {
+  position: absolute;
+  top: 12px;
+  left: 8px;
+  width: 22px;
+  height: 54px;
+  background: #FF85A1;
+  border-radius: 50% 50% 40% 40%;
+}
+.ear-left {
+  left: 28px;
+  transform: rotate(-14deg);
+}
+.ear-right {
+  right: 28px;
+  transform: rotate(18deg);
+}
+
+/* Head */
+.bunny-head {
+  position: absolute;
+  top: 48px;
+  left: 20px;
+  width: 130px;
+  height: 110px;
+  background: radial-gradient(circle at 45% 40%, #FFF0F5 0%, #FFD6E2 60%, #FFB9CD 100%);
+  border-radius: 50% 50% 45% 45%;
+  box-shadow: inset 0 5px 12px rgba(255,255,255,0.8), 0 10px 22px rgba(0,0,0,0.12);
+  z-index: 3;
+}
+
+.bunny-face {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.bunny-eye {
+  position: absolute;
+  top: 42px;
+  width: 18px;
+  height: 22px;
+  background: #212529;
+  border-radius: 50%;
+}
+.eye-l { left: 32px; }
+.eye-shine {
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+}
+.eye-r.wink {
+  right: 32px;
+  background: transparent;
+}
+.wink-curve {
+  font-size: 2.2rem;
+  color: #212529;
+  font-weight: 900;
+  display: block;
+  transform: translateY(-8px);
+}
+
+.bunny-cheeks {
+  position: absolute;
+  top: 54px;
+  width: 24px;
+  height: 14px;
+  background: #FF6584;
+  border-radius: 50%;
+  opacity: 0.6;
+  filter: blur(1px);
+}
+.cheek-l { left: 16px; }
+.cheek-r { right: 16px; }
+
+.bunny-nose {
+  position: absolute;
+  top: 56px;
+  left: 59px;
+  width: 12px;
+  height: 9px;
+  background: #FF4D6D;
+  border-radius: 50% 50% 40% 40%;
+}
+
+.bunny-mouth {
+  position: absolute;
+  top: 68px;
+  left: 56px;
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: #721C24;
   line-height: 1;
 }
 
-.profile-card-name {
-  font-size: var(--font-size-md);
-  font-weight: 900;
-  color: var(--color-text);
-  text-align: center;
+/* Body */
+.bunny-body {
+  position: absolute;
+  top: 130px;
+  left: 32px;
+  width: 106px;
+  height: 85px;
+  background: radial-gradient(circle at 50% 35%, #FFF0F5 0%, #FFD6E2 65%, #FFBACD 100%);
+  border-radius: 50% 50% 40% 40%;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+  z-index: 2;
 }
 
-.profile-card-stars {
-  font-size: var(--font-size-sm);
-  font-weight: 700;
-  color: var(--color-star);
-  background: #FEF3C7;
-  padding: 2px 10px;
-  border-radius: var(--radius-full);
+.bunny-backpack {
+  position: absolute;
+  top: 5px;
+  left: -14px;
+  width: 44px;
+  height: 52px;
+  background: linear-gradient(180deg, #4DABF7 0%, #1971C2 100%);
+  border-radius: 12px;
+  border: 3px solid #1864AB;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  z-index: 4;
 }
 
-.profile-card-age {
-  font-size: var(--font-size-xs);
-  font-weight: 700;
-  color: var(--color-text-muted);
-}
-
-/* Add player card */
-.profile-card--add {
-  border-style: dashed;
-  border-color: var(--color-border);
-  background: var(--color-bg);
-  color: var(--color-text-muted);
-}
-
-.profile-card--add:hover { border-color: var(--color-secondary); color: var(--color-secondary); }
-
-/* Create profile form */
-.create-profile-form {
+.carrot-charm {
+  position: absolute;
+  bottom: -10px;
+  left: 2px;
+  font-size: 1.1rem;
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
+  align-items: center;
+  line-height: 0.8;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.bunny-paw {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background: #FFE3EC;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 5;
+}
+.paw-waving {
+  top: -12px;
+  right: -16px;
+  animation: wavePaw 1.8s ease-in-out infinite alternate;
+}
+.paw-pads {
+  width: 14px;
+  height: 14px;
+  background: #FF85A1;
+  border-radius: 50%;
+  margin: 9px auto;
+}
+.paw-left {
+  top: 15px;
+  left: 10px;
+}
+
+@keyframes wavePaw {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(25deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.bunny-foot {
+  position: absolute;
+  bottom: -8px;
+  width: 36px;
+  height: 22px;
+  background: #FFE3EC;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+.foot-left { left: 10px; }
+.foot-right { right: 10px; }
+
+
+/* ============================================================
+   CENTER COLUMN: The Login / Profile Form Card
+   ============================================================ */
+.login-center-col {
+  display: flex;
+  justify-content: center;
   width: 100%;
 }
 
-.form-group {
+.login-main-card {
+  position: relative;
+  background: #FFFFFF;
+  border-radius: 32px;
+  padding: 2.2rem 2rem 1.8rem;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.15), 0 6px 16px rgba(0,0,0,0.06), inset 0 2px 0 #FFFFFF;
+  border: 4px solid #FFF5F7;
+}
+
+/* Bunny Topper Badge */
+.card-top-bunny-badge {
+  position: absolute;
+  top: -34px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 58px;
+  height: 52px;
+  background: #FFF0F5;
+  border: 3px solid #FFBACD;
+  border-radius: 50% 50% 40% 40%;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+.mini-bunny-ears {
+  position: absolute;
+  top: -16px;
+  display: flex;
+  gap: 8px;
+}
+.m-ear {
+  width: 12px;
+  height: 22px;
+  background: #FFD1DF;
+  border-radius: 50% 50% 30% 30%;
+  border: 2px solid #FFBACD;
+}
+.m-eyes {
+  display: flex;
+  gap: 12px;
+  margin-top: 2px;
+}
+.m-eye {
+  width: 5px;
+  height: 6px;
+  background: #212529;
+  border-radius: 50%;
+}
+.m-nose {
+  width: 6px;
+  height: 4px;
+  background: #FF4D6D;
+  border-radius: 50%;
+  margin-top: 2px;
+}
+.m-cheeks {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  width: 38px;
+  top: 24px;
+}
+.m-cheek {
+  width: 8px;
+  height: 5px;
+  background: #FF85A1;
+  border-radius: 50%;
+  opacity: 0.7;
 }
 
-/* Age buttons */
-.age-grid {
+/* Header */
+.card-header-group {
+  text-align: center;
+  margin-top: 0.3rem;
+  margin-bottom: 1.2rem;
+}
+
+.card-welcome-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.card-welcome-title h2 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #1E3A8A;
+  margin: 0;
+}
+.sparkle-ray-l, .sparkle-ray-r {
+  color: #F59E0B;
+  font-size: 1.1rem;
+}
+
+.card-brand-title {
+  font-size: 2.3rem;
+  font-weight: 900;
+  line-height: 1.1;
+  margin: 2px 0 6px;
+}
+.brand-mimi {
+  color: #FF3366;
+}
+.brand-amp {
+  color: #0284C7;
+  font-size: 1.9rem;
+}
+.brand-me {
+  color: #F59E0B;
+}
+
+.card-subtitle-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #3B82F6;
+}
+.card-subtitle-divider p {
+  color: #475569;
+  font-weight: 700;
+}
+.sub-dash {
+  color: #0284C7;
+  font-weight: 900;
+}
+
+/* Form Fields */
+.login-form-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+}
+
+.login-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.login-form-field label {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #1E293B;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.field-required {
+  color: #FF3366;
+  font-weight: 900;
+}
+
+.field-optional {
+  color: #94A3B8;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.field-icon {
+  position: absolute;
+  left: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.input-with-icon input {
+  width: 100%;
+  background: #FAFAFA;
+  border: 2px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 0.72rem 1rem 0.72rem 2.6rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1E293B;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.input-with-icon input:focus {
+  background: #FFFFFF;
+  border-color: #FF6B8B;
+  box-shadow: 0 0 0 4px rgba(255, 107, 139, 0.18);
+}
+
+.input-with-icon input::placeholder {
+  color: #94A3B8;
+  font-weight: 600;
+}
+
+/* Age Buttons Grid */
+.age-buttons-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-3);
+  gap: 0.55rem;
 }
 
-.age-btn {
-  min-height: var(--tap-large);
-  background: var(--color-bg);
-  border: 3px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  font-size: var(--font-size-2xl);
+.age-choice-btn {
+  background: #FFFDF9;
+  border: 2px solid #F1E5D8;
+  border-radius: 12px;
+  padding: 0.55rem 0;
+  font-family: inherit;
+  font-size: 1.15rem;
   font-weight: 900;
-  font-family: var(--font-primary);
-  color: var(--color-text);
+  color: #334155;
   cursor: pointer;
-  transition: transform var(--transition-spring), border-color var(--transition-fast), background var(--transition-fast);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.15s, background 0.15s, color 0.15s;
   -webkit-tap-highlight-color: transparent;
 }
 
-.age-btn:hover  { border-color: var(--color-primary); }
-.age-btn:active { transform: scale(0.92); }
-
-.age-btn--selected {
-  border-color: var(--color-primary);
-  background: linear-gradient(135deg, rgba(255,107,107,0.12), rgba(255,107,107,0.06));
-  color: var(--color-primary);
+.age-choice-btn:hover {
+  border-color: #FF85A1;
+  background: #FFF5F7;
+  transform: translateY(-2px);
 }
 
-.form-error {
-  color: var(--color-error);
-  font-weight: 700;
-  font-size: var(--font-size-sm);
-  text-align: center;
-  background: #FEF2F2;
-  border-radius: var(--radius-md);
-  padding: var(--space-3);
+.age-choice-btn.is-selected {
+  background: #FFF0F5;
+  border: 2.5px solid #FF4D6D;
+  color: #FF3366;
+  box-shadow: 0 0 0 3px rgba(255, 77, 109, 0.25), 0 4px 8px rgba(255, 77, 109, 0.15);
+  transform: translateY(-2px) scale(1.02);
 }
 
-.back-link {
-  align-self: flex-start;
-  background: none;
-  border: none;
-  font-family: var(--font-primary);
+.login-form-error {
+  color: #C92A2A;
+  background: #FFF5F5;
+  border: 2px solid #FFC9C9;
+  border-radius: 10px;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.85rem;
   font-weight: 800;
-  font-size: var(--font-size-md);
-  color: var(--color-text-light);
+  text-align: center;
+}
+
+/* START Button */
+.login-start-btn {
+  margin-top: 0.4rem;
+  width: 100%;
+  background: linear-gradient(180deg, #FF6B8B 0%, #FF476B 60%, #E62A51 100%);
+  border: none;
+  border-radius: 50px;
+  padding: 0.85rem 1.5rem;
+  color: #FFFFFF;
+  font-family: inherit;
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: 1px;
   cursor: pointer;
-  padding: var(--space-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 7px 0 #B51B3D, 0 14px 22px rgba(230, 42, 81, 0.38);
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s;
   -webkit-tap-highlight-color: transparent;
-  border-radius: var(--radius-md);
-}
-.back-link:active { transform: scale(0.95); }
-
-/* ── Tablet & Desktop Layouts ── */
-@media (min-width: 768px) {
-  .profile-select-page,
-  .create-profile-page {
-    max-width: 680px;
-    margin: 0 auto;
-    gap: var(--space-8);
-  }
-
-  .profile-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-5);
-  }
-
-  .profile-card {
-    padding: var(--space-6) var(--space-5);
-  }
-
-  .profile-card-avatar {
-    font-size: 3.5rem;
-  }
-
-  .profile-card-name {
-    font-size: var(--font-size-lg);
-  }
 }
 
+.login-start-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 0 #B51B3D, 0 18px 28px rgba(230, 42, 81, 0.45);
+}
+
+.login-start-btn:active {
+  transform: translateY(5px);
+  box-shadow: 0 2px 0 #B51B3D, 0 6px 12px rgba(230, 42, 81, 0.3);
+}
+
+.btn-triangle-icon {
+  font-size: 1.1rem;
+  margin-right: 2px;
+}
+.btn-sparkle-burst-l, .btn-sparkle-burst-r {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+
+/* ============================================================
+   RIGHT COLUMN: Directional Signpost & 3D ABC Blocks
+   ============================================================ */
+.login-right-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+}
+
+/* Wooden Directional Signpost */
+.directional-signpost {
+  position: relative;
+  width: 210px;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.2));
+}
+
+.signpost-main-pole {
+  position: absolute;
+  top: -10px;
+  bottom: -30px;
+  width: 24px;
+  background: linear-gradient(90deg, #A86F3E 0%, #7E4B25 50%, #563318 100%);
+  border-radius: 6px;
+  box-shadow: inset 2px 0 4px rgba(255,255,255,0.2), 0 6px 12px rgba(0,0,0,0.3);
+  z-index: 1;
+}
+
+.signpost-arrow {
+  position: relative;
+  z-index: 2;
+  width: 190px;
+  height: 44px;
+  margin-bottom: 12px;
+  background: linear-gradient(180deg, #F9C38B 0%, #E39546 50%, #C47225 100%);
+  border: 3px solid #783C0C;
+  border-right: none;
+  border-radius: 10px 0 0 10px;
+  display: flex;
+  align-items: center;
+  padding-left: 14px;
+  gap: 8px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* Pointy tip on right side of wooden plank */
+.arrow-point {
+  position: absolute;
+  right: -24px;
+  top: -3px;
+  width: 0;
+  height: 0;
+  border-top: 22px solid transparent;
+  border-bottom: 22px solid transparent;
+  border-left: 24px solid #C47225;
+}
+.arrow-point::before {
+  content: '';
+  position: absolute;
+  right: 3px;
+  top: -19px;
+  border-top: 19px solid transparent;
+  border-bottom: 19px solid transparent;
+  border-left: 21px solid #E39546;
+}
+
+.arrow-smarter {
+  transform: rotate(-3deg);
+  background: linear-gradient(180deg, #FBD38D 0%, #ED8936 100%);
+}
+.arrow-brighter {
+  transform: rotate(2deg);
+  background: linear-gradient(180deg, #FEB2B2 0%, #E53E3E 100%);
+}
+.arrow-happier {
+  transform: rotate(-1deg);
+  background: linear-gradient(180deg, #C6F6D5 0%, #38A169 100%);
+}
+
+.sign-icon {
+  font-size: 1.25rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
+}
+.sign-text {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #3E1E05;
+  text-shadow: 1px 1px 0 rgba(255,255,255,0.4);
+}
+
+/* 3D Toy ABC Blocks */
+.abc-blocks-cluster {
+  position: relative;
+  width: 200px;
+  height: 140px;
+}
+
+.block-3d {
+  position: absolute;
+  width: 58px;
+  height: 58px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 900;
+  color: white;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.block-a {
+  top: 0;
+  left: 65px;
+  background: linear-gradient(135deg, #FEE140 0%, #FA709A 100%);
+  border: 3px solid #FFA000;
+  color: #FFF;
+  z-index: 3;
+}
+.block-b {
+  bottom: 0;
+  left: 25px;
+  background: linear-gradient(135deg, #4FACFE 0%, #00F2FE 100%);
+  border: 3px solid #0288D1;
+  z-index: 2;
+}
+.block-c {
+  bottom: 0;
+  right: 25px;
+  background: linear-gradient(135deg, #FF6FD8 0%, #3813C2 100%);
+  border: 3px solid #C2185B;
+  z-index: 2;
+}
+
+.cluster-flowers {
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.3rem;
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.2));
+}
+
+
+/* ============================================================
+   MODAL: Choose Who is Playing (Existing Profiles)
+   ============================================================ */
+.profile-select-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.profile-select-card {
+  background: white;
+  border-radius: 28px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 620px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+}
+
+.profile-select-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.modal-bunny-icon {
+  font-size: 3rem;
+  margin-bottom: 0.3rem;
+}
+.profile-select-header h2 {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #1E293B;
+}
+.profile-select-header p {
+  color: #64748B;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.profiles-select-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+.player-select-card {
+  background: #F8FAFC;
+  border: 3px solid #E2E8F0;
+  border-radius: 20px;
+  padding: 1.2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+}
+.player-select-card:hover {
+  border-color: #FF4D6D;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(255, 77, 109, 0.15);
+  background: #FFF5F7;
+}
+
+.player-avatar-circle {
+  font-size: 2.5rem;
+}
+.player-name {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #1E293B;
+}
+.player-age-tag {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #64748B;
+  background: #E2E8F0;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+.player-stars-pill {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #D97706;
+  background: #FEF3C7;
+  padding: 2px 10px;
+  border-radius: 14px;
+}
+
+.modal-actions-bar {
+  display: flex;
+  justify-content: center;
+}
+.create-new-profile-btn {
+  background: #F1F5F9;
+  border: 2px dashed #94A3B8;
+  border-radius: 16px;
+  padding: 0.75rem 1.5rem;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #475569;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.create-new-profile-btn:hover {
+  background: #FFF0F5;
+  border-color: #FF4D6D;
+  color: #FF4D6D;
+}
+
+
+/* ============================================================
+   RESPONSIVE DESIGN (Tablets & Mobiles)
+   ============================================================ */
+@media (max-width: 1080px) {
+  .login-content-grid {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    gap: 2rem;
+  }
+  .login-left-col, .login-right-col {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .login-main-card {
+    padding: 1.8rem 1.2rem 1.5rem;
+    border-radius: 24px;
+  }
+  .card-brand-title {
+    font-size: 1.9rem;
+  }
+  .existing-profiles-badge {
+    top: 0.8rem;
+    right: 0.8rem;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
