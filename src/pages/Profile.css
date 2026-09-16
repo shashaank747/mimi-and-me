@@ -1,0 +1,184 @@
+/* Profile Page Styles */
+.profile-select-page,
+.create-profile-page {
+  gap: var(--space-6);
+  padding-top: var(--space-8);
+}
+
+.profile-select-header,
+.create-profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.profile-select-title,
+.create-profile-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 900;
+  text-align: center;
+  color: var(--color-text);
+  line-height: 1.15;
+}
+
+/* Profile grid */
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  width: 100%;
+}
+
+.profile-card {
+  background: white;
+  border: 3px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  transition: transform var(--transition-spring), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+  -webkit-tap-highlight-color: transparent;
+  font-family: var(--font-primary);
+}
+
+.profile-card:hover  { border-color: var(--color-primary); transform: translateY(-4px); box-shadow: var(--shadow-card); }
+.profile-card:active { transform: scale(0.94); }
+
+.profile-card-avatar {
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.profile-card-name {
+  font-size: var(--font-size-md);
+  font-weight: 900;
+  color: var(--color-text);
+  text-align: center;
+}
+
+.profile-card-stars {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-star);
+  background: #FEF3C7;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+}
+
+.profile-card-age {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-text-muted);
+}
+
+/* Add player card */
+.profile-card--add {
+  border-style: dashed;
+  border-color: var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+}
+
+.profile-card--add:hover { border-color: var(--color-secondary); color: var(--color-secondary); }
+
+/* Create profile form */
+.create-profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* Age buttons */
+.age-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+
+.age-btn {
+  min-height: var(--tap-large);
+  background: var(--color-bg);
+  border: 3px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-2xl);
+  font-weight: 900;
+  font-family: var(--font-primary);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: transform var(--transition-spring), border-color var(--transition-fast), background var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.age-btn:hover  { border-color: var(--color-primary); }
+.age-btn:active { transform: scale(0.92); }
+
+.age-btn--selected {
+  border-color: var(--color-primary);
+  background: linear-gradient(135deg, rgba(255,107,107,0.12), rgba(255,107,107,0.06));
+  color: var(--color-primary);
+}
+
+.form-error {
+  color: var(--color-error);
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+  text-align: center;
+  background: #FEF2F2;
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+}
+
+.back-link {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  font-family: var(--font-primary);
+  font-weight: 800;
+  font-size: var(--font-size-md);
+  color: var(--color-text-light);
+  cursor: pointer;
+  padding: var(--space-2);
+  -webkit-tap-highlight-color: transparent;
+  border-radius: var(--radius-md);
+}
+.back-link:active { transform: scale(0.95); }
+
+/* ── Tablet & Desktop Layouts ── */
+@media (min-width: 768px) {
+  .profile-select-page,
+  .create-profile-page {
+    max-width: 680px;
+    margin: 0 auto;
+    gap: var(--space-8);
+  }
+
+  .profile-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+
+  .profile-card {
+    padding: var(--space-6) var(--space-5);
+  }
+
+  .profile-card-avatar {
+    font-size: 3.5rem;
+  }
+
+  .profile-card-name {
+    font-size: var(--font-size-lg);
+  }
+}
+

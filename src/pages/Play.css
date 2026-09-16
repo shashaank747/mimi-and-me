@@ -1,0 +1,58 @@
+/* Play Page Styles */
+.play-screen-wrapper {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.play-world-bg-layer {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.play-screen-wrapper.has-world-bg .play-page {
+  background: transparent;
+  position: relative;
+  z-index: 1;
+}
+
+.play-page {
+  gap: var(--space-4);
+  background: linear-gradient(180deg, #F0F8FF 0%, #FFF8F0 100%);
+  position: relative;
+  z-index: 1;
+}
+
+.play-story-intro {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius-xl);
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  color: var(--color-text);
+  box-shadow: var(--shadow-sm);
+  width: 100%;
+  text-align: center;
+  line-height: 1.4;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.play-story-intro em {
+  font-style: italic;
+  color: var(--color-text-light);
+}
+
+.play-content {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+

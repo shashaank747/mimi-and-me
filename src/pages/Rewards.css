@@ -1,0 +1,261 @@
+/* Rewards Page Styles */
+.rewards-page { gap: var(--space-4); }
+
+/* Tabs */
+.rewards-tabs {
+  display: flex;
+  gap: var(--space-2);
+  width: 100%;
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: var(--space-2);
+  box-shadow: var(--shadow-sm);
+}
+
+.rewards-tab {
+  flex: 1;
+  background: none;
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+  font-family: var(--font-primary);
+  font-weight: 800;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+  min-height: var(--tap-min);
+}
+
+.rewards-tab--active {
+  background: var(--color-primary);
+  color: white;
+}
+
+.rewards-content { width: 100%; }
+
+/* Sticker Book */
+.sticker-book-count {
+  font-size: var(--font-size-md);
+  font-weight: 800;
+  text-align: center;
+  color: var(--color-text-light);
+  margin-bottom: var(--space-4);
+}
+
+.sticker-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+}
+
+.sticker-slot {
+  aspect-ratio: 1;
+  background: var(--color-bg);
+  border: 3px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  transition: transform var(--transition-spring);
+}
+
+.sticker-slot--unlocked {
+  background: white;
+  border-style: solid;
+  border-color: var(--color-accent);
+  animation: bounceIn 0.4s ease;
+}
+
+.sticker-emoji { font-size: 1.75rem; }
+.sticker-name  { font-size: 0.6rem; font-weight: 700; color: var(--color-text-muted); text-align: center; }
+
+/* Dress Mimi */
+.dress-mimi {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.dress-mimi-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.dress-mimi-equipped {
+  display: flex;
+  gap: var(--space-2);
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-4);
+  flex-direction: column;
+}
+
+.equipped-item { font-size: 1.5rem; }
+
+.outfit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+
+.outfit-item {
+  background: white;
+  border: 3px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  cursor: pointer;
+  min-height: var(--tap-large);
+  transition: transform var(--transition-spring), border-color var(--transition-fast);
+  font-family: var(--font-primary);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.outfit-item--unlocked:hover { transform: scale(1.05); border-color: var(--color-primary); }
+.outfit-item--equipped { border-color: var(--color-success); background: #F0FDF4; }
+.outfit-item--locked   { opacity: 0.5; cursor: not-allowed; background: #F9FAFB; }
+.outfit-item-emoji { font-size: 1.75rem; }
+.outfit-item-name  { font-size: var(--font-size-xs); font-weight: 800; color: var(--color-text); }
+.outfit-item-cost  { font-size: var(--font-size-xs); font-weight: 700; color: var(--color-star); }
+
+/* Room */
+.room-preview {
+  background: linear-gradient(135deg, #B2DEFF, #FFE4B5);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  text-align: center;
+  margin-bottom: var(--space-4);
+  font-size: var(--font-size-xl);
+  font-weight: 900;
+}
+
+.room-items-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+
+.room-item {
+  background: white;
+  border: 3px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  text-align: center;
+}
+
+.room-item--unlocked { border-color: var(--color-accent); }
+.room-item--placed   { background: #F0FDF4; border-color: var(--color-success); }
+.room-item--locked   { opacity: 0.5; background: #F9FAFB; }
+.room-item-emoji { font-size: 1.75rem; }
+.room-item-name  { font-size: var(--font-size-xs); font-weight: 800; color: var(--color-text); }
+.room-item-cost  { font-size: var(--font-size-xs); font-weight: 700; color: var(--color-star); }
+
+/* ── Tablet & Desktop Layouts ── */
+@media (min-width: 768px) {
+  .rewards-page {
+    gap: var(--space-6);
+  }
+
+  .rewards-tabs {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .rewards-tab {
+    font-size: var(--font-size-md);
+    padding: var(--space-4);
+  }
+
+  .sticker-grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--space-4);
+  }
+
+  .sticker-slot {
+    padding: var(--space-3);
+  }
+
+  .sticker-emoji {
+    font-size: 2.5rem;
+  }
+
+  .sticker-name {
+    font-size: var(--font-size-xs);
+  }
+
+  .dress-mimi {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--space-8);
+    align-items: start;
+  }
+
+  .outfit-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+  }
+
+  .outfit-item {
+    padding: var(--space-4);
+  }
+
+  .outfit-item-emoji {
+    font-size: 2.5rem;
+  }
+
+  .outfit-item-name {
+    font-size: var(--font-size-sm);
+  }
+
+  .room-preview {
+    padding: var(--space-12);
+    font-size: var(--font-size-2xl);
+  }
+
+  .room-items-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+  }
+
+  .room-item {
+    padding: var(--space-4);
+  }
+
+  .room-item-emoji {
+    font-size: 2.5rem;
+  }
+
+  .room-item-name {
+    font-size: var(--font-size-sm);
+  }
+}
+
+@media (min-width: 1024px) {
+  .sticker-grid {
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  .outfit-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .room-items-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}

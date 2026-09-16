@@ -1,0 +1,206 @@
+/* Adventure Page Styles */
+.adventure-page {
+  gap: var(--space-4);
+  background: linear-gradient(180deg, #E8F5E9 0%, #FFF8F0 100%);
+}
+
+.adventure-story-intro {
+  width: 100%;
+}
+
+.story-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  width: 100%;
+}
+
+.story-bubble {
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text);
+  box-shadow: var(--shadow-sm);
+  text-align: left;
+  font-style: normal;
+  line-height: 1.4;
+  flex: 1;
+  max-width: 320px;
+}
+
+.story-bubble em {
+  font-style: italic;
+  color: var(--color-text-light);
+}
+
+/* World map */
+.world-map {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  padding: var(--space-2) 0;
+}
+
+.world-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.world-node--left  { align-items: flex-start; padding-left: var(--space-4); }
+.world-node--right { align-items: flex-end; padding-right: var(--space-4); }
+
+/* World button */
+.world-btn {
+  position: relative;
+  background: white;
+  border: 4px solid var(--world-color, var(--color-primary));
+  border-radius: var(--radius-xl);
+  padding: var(--space-4) var(--space-5);
+  min-width: 200px;
+  max-width: 240px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  cursor: pointer;
+  transition: transform var(--transition-spring), box-shadow var(--transition-fast);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  -webkit-tap-highlight-color: transparent;
+  font-family: var(--font-primary);
+  text-align: left;
+}
+
+.world-btn:hover:not(:disabled) {
+  transform: scale(1.04);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.15);
+}
+.world-btn:active:not(:disabled) { transform: scale(0.96); }
+
+.world-btn--locked {
+  border-style: dashed;
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: #F3F4F6;
+}
+
+.world-btn--current {
+  animation: pulse 2s ease infinite;
+  box-shadow: 0 0 0 4px rgba(255,107,107,0.3), 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.world-btn--completed {
+  background: #F0FDF4;
+}
+
+.world-btn-emoji { font-size: 2rem; }
+
+.world-btn-name {
+  font-size: var(--font-size-md);
+  font-weight: 900;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.world-btn-progress {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-3);
+  font-size: var(--font-size-xs);
+  font-weight: 800;
+  color: var(--world-color);
+  background: rgba(0,0,0,0.06);
+  border-radius: var(--radius-full);
+  padding: 2px 8px;
+}
+
+.world-btn-check {
+  position: absolute;
+  bottom: var(--space-2);
+  right: var(--space-3);
+  background: var(--color-success);
+  color: white;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 900;
+}
+
+/* Path connector between worlds */
+.world-path {
+  width: 4px;
+  height: 40px;
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+  margin: var(--space-1) auto;
+}
+
+.world-path--active { background: var(--color-secondary); }
+
+/* ── Tablet & Desktop Widescreen Adventure Layout ── */
+@media (min-width: 768px) {
+  .adventure-page {
+    gap: var(--space-6);
+  }
+
+  .story-banner {
+    gap: var(--space-5);
+  }
+
+  .story-bubble {
+    font-size: var(--font-size-md);
+    padding: var(--space-4) var(--space-6);
+    max-width: 600px;
+  }
+
+  .world-map {
+    max-width: 780px;
+    padding: var(--space-4) 0;
+  }
+
+  .world-btn {
+    min-width: 280px;
+    max-width: 320px;
+    padding: var(--space-5) var(--space-6);
+    gap: var(--space-4);
+  }
+
+  .world-btn-emoji {
+    font-size: 2.8rem;
+  }
+
+  .world-btn-name {
+    font-size: var(--font-size-lg);
+  }
+
+  .world-node--left  { padding-left: var(--space-10); }
+  .world-node--right { padding-right: var(--space-10); }
+
+  .world-path {
+    height: 50px;
+    width: 6px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .world-map {
+    max-width: 900px;
+  }
+
+  .world-btn {
+    min-width: 320px;
+    max-width: 360px;
+  }
+
+  .world-node--left  { padding-left: var(--space-16); }
+  .world-node--right { padding-right: var(--space-16); }
+}

@@ -1,0 +1,200 @@
+/* ============================================================
+   MIMI & ME — Animations (CSS only, GPU-composited)
+   ============================================================ */
+
+/* ── Entry / Exit ── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* ── Scale ── */
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.7); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes scaleOut {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.7); }
+}
+
+@keyframes pop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* ── Bounce ── */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  40%       { transform: translateY(-16px); }
+  60%       { transform: translateY(-8px); }
+}
+
+@keyframes bounceIn {
+  0%   { opacity: 0; transform: scale(0.3); }
+  50%  { opacity: 1; transform: scale(1.05); }
+  70%  { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+/* ── Shake (wrong answer) ── */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-8px); }
+  40%       { transform: translateX(8px); }
+  60%       { transform: translateX(-6px); }
+  80%       { transform: translateX(6px); }
+}
+
+/* ── Pulse ── */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.05); }
+}
+
+@keyframes pulseSlow {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.7; }
+}
+
+/* ── Wiggle ── */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25%       { transform: rotate(-8deg); }
+  75%       { transform: rotate(8deg); }
+}
+
+/* ── Spin ── */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ── Float (idle) ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+/* ── Mimi idle bounce ── */
+@keyframes mimiIdle {
+  0%, 100% { transform: translateY(0) scale(1); }
+  30%       { transform: translateY(-12px) scale(1.02); }
+  60%       { transform: translateY(-6px) scale(1.01); }
+}
+
+/* ── Mimi celebrate ── */
+@keyframes mimiCelebrate {
+  0%   { transform: translateY(0) rotate(0deg); }
+  25%  { transform: translateY(-20px) rotate(-10deg); }
+  50%  { transform: translateY(0) rotate(0deg); }
+  75%  { transform: translateY(-20px) rotate(10deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+/* ── Graffiti Slide In (from left) ── */
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-100%); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(100%); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInBottom {
+  from { opacity: 0; transform: translateY(100%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Star burst (1 by 1 with stagger) ── */
+@keyframes starPop {
+  0%   { opacity: 0; transform: scale(0) rotate(-20deg); }
+  60%  { opacity: 1; transform: scale(1.3) rotate(5deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* ── Sticker slap ── */
+@keyframes stickerSlap {
+  0%   { opacity: 0; transform: scale(3) rotate(15deg); }
+  60%  { transform: scale(0.9) rotate(-3deg); }
+  80%  { transform: scale(1.05) rotate(1deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* ── Spray reveal (clip-path) ── */
+@keyframes sprayReveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0% 0 0); }
+}
+
+/* ── Confetti pieces ── */
+@keyframes confettiFall {
+  0%   { opacity: 1; transform: translateY(-20px) rotate(0deg); }
+  100% { opacity: 0; transform: translateY(80px) rotate(360deg); }
+}
+
+/* ── Achievement popup ── */
+@keyframes achievementSlide {
+  0%   { opacity: 0; transform: translateX(120%) scale(0.9); }
+  60%  { transform: translateX(-8%) scale(1.02); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+/* ── Reward fly-in ── */
+@keyframes rewardFlyIn {
+  0%   { opacity: 1; transform: translate(0,0) scale(1); }
+  100% { opacity: 0; transform: translate(60px, -80px) scale(0.3); }
+}
+
+/* ── Hold progress ring ── */
+@keyframes holdFill {
+  from { stroke-dashoffset: 283; }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* ── World unlock ── */
+@keyframes unlockPop {
+  0%   { transform: scale(0.8) rotate(-5deg); opacity: 0; }
+  60%  { transform: scale(1.1) rotate(3deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* ── Utility animation classes ── */
+.animate-fadeIn       { animation: fadeIn 0.4s ease forwards; }
+.animate-fadeInUp     { animation: fadeInUp 0.4s ease forwards; }
+.animate-fadeInDown   { animation: fadeInDown 0.4s ease forwards; }
+.animate-scaleIn      { animation: scaleIn 0.3s var(--transition-spring) forwards; }
+.animate-bounceIn     { animation: bounceIn 0.5s ease forwards; }
+.animate-pop          { animation: pop 0.3s ease forwards; }
+.animate-shake        { animation: shake 0.4s ease forwards; }
+.animate-wiggle       { animation: wiggle 0.4s ease forwards; }
+.animate-pulse        { animation: pulse 2s ease infinite; }
+.animate-float        { animation: float 3s ease-in-out infinite; }
+.animate-mimiIdle     { animation: mimiIdle 2.5s ease-in-out infinite; }
+.animate-mimiCelebrate{ animation: mimiCelebrate 0.6s ease-in-out 3; }
+
+/* ── Stagger helpers ── */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }

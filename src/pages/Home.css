@@ -1,0 +1,456 @@
+/* ============================================================
+   MIMI & ME — Home Adventure Dashboard Styles
+   ============================================================ */
+
+.home-dashboard-scene {
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  background-color: #7ED0FB;
+  font-family: var(--font-primary);
+}
+
+/* ── Landscape Background ── */
+.home-bg-layer {
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/backgrounds/mimi_home_bg.jpg');
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  z-index: 0;
+  filter: saturate(1.1) brightness(1.02);
+}
+
+/* Soft ambient lighting */
+.home-sparkles-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sparkle {
+  position: absolute;
+  font-size: 1.5rem;
+  opacity: 0.8;
+  animation: float 4s ease-in-out infinite;
+}
+.sparkle.s1 { top: 22%; left: 35%; animation-delay: 0s; }
+.sparkle.s2 { top: 15%; right: 25%; animation-delay: 1.5s; }
+.sparkle.s3 { top: 40%; left: 15%; animation-delay: 2.5s; }
+
+/* ── Main Layout Container ── */
+.home-main-container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: var(--space-4) var(--space-6);
+}
+
+/* ── Interactive Stage ── */
+.home-interactive-stage {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: var(--space-8);
+  align-items: center;
+  flex: 1;
+  padding: var(--space-2) 0;
+}
+
+/* ── LEFT HERO: Mimi + Speech Bubble + CTA ── */
+.home-left-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  gap: var(--space-3);
+}
+
+/* Speech Bubble */
+.mimi-speech-bubble {
+  position: relative;
+  background: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 900;
+  font-size: 1rem;
+  color: #2D3748;
+  margin-bottom: -15px;
+  z-index: 5;
+  border: 3px solid rgba(255,255,255,0.9);
+}
+
+.speech-heart {
+  font-size: 1rem;
+  animation: pulse 1.5s infinite;
+}
+
+.speech-tail {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid white;
+}
+
+/* Mimi Sprite Container */
+.mimi-hero-sprite {
+  cursor: pointer;
+  transition: transform var(--transition-spring);
+  filter: drop-shadow(0 12px 24px rgba(0,0,0,0.18));
+}
+
+.mimi-hero-sprite:hover {
+  transform: scale(1.05) rotate(2deg);
+}
+
+/* Wooden CTA Board */
+.wooden-cta-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 340px;
+  background: linear-gradient(180deg, #D49B6A 0%, #A66B38 100%);
+  border: 4px solid #6E401F;
+  border-radius: 28px;
+  padding: 12px 14px 10px;
+  box-shadow: 
+    0 10px 28px rgba(0,0,0,0.25),
+    inset 0 2px 4px rgba(255,255,255,0.4);
+  position: relative;
+}
+
+.wooden-cta-board::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 12px;
+  width: 8px;
+  height: 8px;
+  background: #502E15;
+  border-radius: 50%;
+  box-shadow: 0 1px 1px rgba(255,255,255,0.5);
+}
+
+.wooden-cta-board::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  right: 12px;
+  width: 8px;
+  height: 8px;
+  background: #502E15;
+  border-radius: 50%;
+  box-shadow: 0 1px 1px rgba(255,255,255,0.5);
+}
+
+.adventure-play-btn {
+  width: 100%;
+  background: linear-gradient(180deg, #FF5E7E 0%, #FF2A55 100%);
+  border: 3px solid #FFF;
+  border-radius: 40px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 
+    0 6px 16px rgba(255, 42, 85, 0.4),
+    inset 0 3px 2px rgba(255,255,255,0.6);
+  transition: transform var(--transition-spring), box-shadow var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.adventure-play-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 24px rgba(255, 42, 85, 0.5);
+}
+
+.adventure-play-btn:active {
+  transform: translateY(2px) scale(0.97);
+}
+
+.play-icon-triangle {
+  font-size: 1.25rem;
+  color: white;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));
+}
+
+.play-text {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: white;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.25);
+}
+
+.cta-level-plank {
+  margin-top: 8px;
+  background: linear-gradient(180deg, #FFE4B5 0%, #F5C678 100%);
+  border: 2px solid #8B5A2B;
+  border-radius: 14px;
+  padding: 4px 16px;
+  box-shadow: inset 0 1px 1px #FFF, 0 2px 4px rgba(0,0,0,0.15);
+}
+
+.level-plank-text {
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: #5C3814;
+  letter-spacing: 0.03em;
+}
+
+/* ── RIGHT HUBS: Floating Islands & Pods ── */
+.home-right-hubs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  width: 100%;
+}
+
+/* ── Top Row: 3 Floating Islands ── */
+.islands-top-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  width: 100%;
+}
+
+.floating-island-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: transform var(--transition-spring), filter var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.floating-island-card:hover {
+  transform: translateY(-8px) scale(1.05);
+  filter: drop-shadow(0 14px 28px rgba(0,0,0,0.22));
+}
+
+.floating-island-card:active {
+  transform: scale(0.95);
+}
+
+.island-hero-img {
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.18));
+  transition: transform 0.25s ease;
+}
+
+.floating-island-card:hover .island-hero-img {
+  transform: scale(1.03);
+}
+
+/* ── Bottom Row: 3 Mini Pods ── */
+.pods-bottom-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  width: 85%;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.mini-garden-pod {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: transform var(--transition-spring), filter var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mini-garden-pod:hover {
+  transform: translateY(-6px) scale(1.06);
+}
+
+.mini-garden-pod:active {
+  transform: scale(0.95);
+}
+
+.pod-hero-img {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.16));
+}
+
+.pod-mound {
+  width: 90px;
+  height: 60px;
+  background: linear-gradient(180deg, #68D391 0%, #38A169 50%, #48BB78 100%);
+  border-radius: 50% 50% 40% 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.18), inset 0 2px 4px rgba(255,255,255,0.4);
+  border-top: 3px solid #9AE6B4;
+  position: relative;
+}
+
+.pod-3d-icon {
+  font-size: 2.5rem;
+  margin-top: -24px;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.25));
+  transition: transform 0.2s;
+}
+
+.mini-garden-pod:hover .pod-3d-icon {
+  transform: scale(1.15) rotate(5deg);
+}
+
+.pod-pill-label {
+  background: white;
+  border: 2px solid #E2E8F0;
+  border-radius: 20px;
+  padding: 4px 16px;
+  font-weight: 900;
+  font-size: 0.85rem;
+  color: #2D3748;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  margin-top: -6px;
+  z-index: 3;
+  white-space: nowrap;
+}
+
+/* ── Rustic Wooden Signpost (Bottom Right) ── */
+.corner-wooden-signpost {
+  position: absolute;
+  bottom: var(--space-4);
+  right: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.signpost-pole {
+  position: absolute;
+  top: -10px;
+  width: 14px;
+  height: 90px;
+  background: linear-gradient(90deg, #8D5B28 0%, #5C3814 100%);
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.signpost-plank {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(180deg, #E6B870 0%, #C88E44 100%);
+  border: 2px solid #6E401F;
+  border-radius: 6px;
+  padding: 2px 12px;
+  font-size: 0.75rem;
+  font-weight: 900;
+  color: #4A280B;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  margin-bottom: 3px;
+  letter-spacing: 0.02em;
+}
+
+.signpost-plank.p1 { transform: rotate(-2deg); }
+.signpost-plank.p2 { transform: rotate(3deg); padding: 1px 18px; }
+.signpost-plank.p3 { transform: rotate(-1deg); }
+
+/* Animation Delays */
+.delay-1 { animation-delay: 1s; }
+.delay-2 { animation-delay: 2s; }
+
+/* ── Responsive Scaling for Tablets and Mobile ── */
+@media (max-width: 1024px) {
+  .home-interactive-stage {
+    grid-template-columns: 320px 1fr;
+    gap: var(--space-5);
+  }
+
+  .block-letter, .block-num {
+    font-size: 2.6rem;
+  }
+
+  .block-math {
+    font-size: 2.2rem;
+  }
+
+  .corner-wooden-signpost {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-interactive-stage {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .islands-top-row {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+  }
+
+  .block-letter, .block-num, .block-math {
+    font-size: 2rem;
+  }
+
+  .wood-title {
+    font-size: 0.9rem;
+  }
+
+  .sub-text {
+    font-size: 0.65rem;
+  }
+
+  .pods-bottom-row {
+    width: 100%;
+    gap: var(--space-3);
+  }
+
+  .pod-mound {
+    width: 75px;
+    height: 50px;
+  }
+
+  .pod-3d-icon {
+    font-size: 2rem;
+  }
+}

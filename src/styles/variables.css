@@ -1,0 +1,110 @@
+/* ============================================================
+   MIMI & ME — Design Tokens
+   ============================================================ */
+
+:root {
+  /* ── Brand Colors ── */
+  --color-primary:     #FF6B6B;   /* coral */
+  --color-secondary:   #4ECDC4;   /* teal */
+  --color-accent:      #FFE66D;   /* sunny yellow */
+  --color-purple:      #A855F7;
+  --color-green:       #22C55E;
+  --color-orange:      #FB923C;
+  --color-blue:        #38BDF8;
+  --color-pink:        #F472B6;
+
+  /* ── Backgrounds ── */
+  --color-bg:          #FFF8F0;   /* warm white */
+  --color-bg-alt:      #FFF0E8;
+  --color-card:        #FFFFFF;
+  --color-card-hover:  #FFF4EC;
+
+  /* ── Text ── */
+  --color-text:        #2D2D2D;
+  --color-text-light:  #6B6B6B;
+  --color-text-muted:  #9CA3AF;
+  --color-text-white:  #FFFFFF;
+
+  /* ── Borders ── */
+  --color-border:      #E8E0D8;
+  --color-border-focus:#FF6B6B;
+
+  /* ── Stars ── */
+  --color-star:        #FBBF24;
+  --color-star-empty:  #E5E7EB;
+
+  /* ── Status ── */
+  --color-success:     #22C55E;
+  --color-warning:     #F59E0B;
+  --color-error:       #EF4444;
+  --color-locked:      #9CA3AF;
+
+  /* ── World Colors ── */
+  --world-home:        #FFB347;
+  --world-letters:     #4ECDC4;
+  --world-meadow:      #95E574;
+  --world-numbers:     #6C63FF;
+  --world-village:     #FF8C42;
+  --world-addition:    #52B788;
+  --world-subtraction: #6B78BB;
+  --world-multiply:    #E9C46A;
+  --world-division:    #E76F51;
+  --world-glitch:      #9B2226;
+
+  /* ── Typography ── */
+  --font-primary:      'Nunito', 'Rounded Mplus 1c', sans-serif;
+  --font-size-xs:      0.75rem;    /* 12px */
+  --font-size-sm:      0.875rem;   /* 14px */
+  --font-size-md:      1rem;       /* 16px */
+  --font-size-lg:      1.25rem;    /* 20px */
+  --font-size-xl:      1.5rem;     /* 24px */
+  --font-size-2xl:     2rem;       /* 32px */
+  --font-size-3xl:     2.5rem;     /* 40px */
+  --font-size-4xl:     3rem;       /* 48px */
+  --font-size-5xl:     4rem;       /* 64px */
+
+  /* ── Spacing ── */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+
+  /* ── Border Radius ── */
+  --radius-sm:   8px;
+  --radius-md:   16px;
+  --radius-lg:   24px;
+  --radius-xl:   32px;
+  --radius-full: 9999px;
+
+  /* ── Shadows ── */
+  --shadow-sm:  0 2px 8px rgba(0,0,0,0.08);
+  --shadow-md:  0 4px 16px rgba(0,0,0,0.12);
+  --shadow-lg:  0 8px 32px rgba(0,0,0,0.15);
+  --shadow-card:0 4px 20px rgba(255,107,107,0.15);
+  --shadow-btn: 0 4px 12px rgba(0,0,0,0.15);
+  --shadow-glow:0 0 20px rgba(255,107,107,0.4);
+
+  /* ── Tap Targets (min 48px for children) ── */
+  --tap-min:   48px;
+  --tap-large: 64px;
+  --tap-xl:    80px;
+
+  /* ── Transitions ── */
+  --transition-fast:   150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow:   400ms ease;
+  --transition-spring: 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ── Z-Index ── */
+  --z-base:    1;
+  --z-overlay: 10;
+  --z-modal:   100;
+  --z-toast:   1000;
+}

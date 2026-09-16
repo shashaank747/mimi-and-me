@@ -1,0 +1,148 @@
+/* GraffitiCelebration Styles */
+.graffiti-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  animation: fadeIn 0.25s ease forwards;
+  backdrop-filter: blur(4px);
+}
+
+.graffiti-card {
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: var(--space-8) var(--space-6);
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+/* Animation stubs — filled with full keyframes in Phase 6 */
+.graffiti--hidden {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.graffiti--slide {
+  animation: slideInLeft 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.graffiti--bounce {
+  animation: bounceIn 0.6s ease forwards;
+}
+
+.graffiti--sticker-slap {
+  animation: stickerSlap 0.5s ease forwards;
+}
+
+.graffiti--spray {
+  animation: scaleIn 0.4s var(--transition-spring) forwards;
+}
+
+.graffiti--confetti {
+  animation: bounceIn 0.5s ease forwards;
+}
+
+.graffiti--rotate {
+  animation: scaleIn 0.4s ease forwards;
+}
+
+.graffiti--character {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+/* Personal best variant */
+.graffiti--personal-best {
+  border: 4px solid var(--color-accent);
+  background: linear-gradient(135deg, #FFFEF0, #FFF9E6);
+}
+
+.graffiti-emoji {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.graffiti-pb-banner {
+  background: linear-gradient(135deg, var(--color-accent), #FFD93D);
+  color: #7A5C00;
+  font-weight: 900;
+  font-size: var(--font-size-md);
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-full);
+}
+
+.graffiti-message {
+  font-size: var(--font-size-2xl);
+  font-weight: 900;
+  color: var(--color-primary);
+  line-height: 1.1;
+  margin: 0;
+}
+
+/* Stars */
+.graffiti-stars {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+}
+
+.graffiti-star {
+  font-size: 2.5rem;
+  opacity: 0;
+  transform: scale(0) rotate(-20deg);
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: inline-block;
+}
+
+.graffiti-star--visible {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+.graffiti-star--empty {
+  filter: grayscale(1);
+  opacity: 0.3 !important;
+}
+
+.graffiti-xp {
+  font-size: var(--font-size-lg);
+  font-weight: 900;
+  color: var(--color-star);
+  background: #FEF3C7;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+}
+
+.graffiti-badge {
+  background: linear-gradient(135deg, var(--color-purple), #7C3AED);
+  color: white;
+  font-weight: 900;
+  font-size: var(--font-size-md);
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-full);
+}
+
+.graffiti-reward {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  background: var(--color-bg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-5);
+  width: 100%;
+  justify-content: center;
+}
+
+.graffiti-reward-emoji { font-size: 2rem; }
+.graffiti-reward-name  { font-weight: 800; font-size: var(--font-size-md); color: var(--color-text); }
+
+.graffiti-next-btn { margin-top: var(--space-2); }
