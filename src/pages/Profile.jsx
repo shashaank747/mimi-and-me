@@ -78,38 +78,14 @@ function LoginForm({ onCreated, existingProfiles, onShowProfiles }) {
 
   return (
     <div className="login-scene-stage">
-      {/* ── Background Scene ── */}
-      <div className="login-scene-bg">
-        <div className="bg-sky-elements">
-          <div className="cloud cloud-1" />
-          <div className="cloud cloud-2" />
-          <div className="cloud cloud-3" />
-          <div className="sun-sparkles">✨</div>
-        </div>
+      {/* ── Background Scenery ── */}
+      <div className="login-scene-bg" />
 
-        {/* Tree on left */}
-        <div className="scene-tree-left">
-          <div className="tree-foliage f1" />
-          <div className="tree-foliage f2" />
-          <div className="tree-trunk" />
-          <div className="tree-branch" />
-        </div>
-
-        {/* Treehouse & Hills on right */}
-        <div className="scene-treehouse-right">
-          <div className="treehouse-foliage" />
-          <div className="treehouse-cabin">
-            <div className="treehouse-roof" />
-            <div className="treehouse-window">🪟</div>
-            <div className="treehouse-door" />
-            <div className="treehouse-ladder" />
-          </div>
-        </div>
-
-        {/* Fence & Grass Hills */}
-        <div className="scene-wooden-fence" />
-        <div className="scene-grass-hill" />
-        <div className="scene-stone-path" />
+      {/* Ambient floating sparkles */}
+      <div className="login-ambient-sparkles">
+        <span className="sparkle-float sp-1">✨</span>
+        <span className="sparkle-float sp-2">✨</span>
+        <span className="sparkle-float sp-3">🌸</span>
       </div>
 
       {/* Existing Players Switcher pill (top right) */}
